@@ -2,46 +2,46 @@
 const express = require('express');
 const router = express.Router();
 
-// Require Food model in our routes module
-const Food = require('../models/foodModel');
+// Require emergencyPetBoarding model in our routes module
+const EmergencyPetBoarding = require('../models/emergencyPetBoardingModel');
 
-/* GET Food */
-router.get('/food', (req, res) => {
-    Food.find((err, foods) => {
+/* GET EmergencyPetBoarding */
+router.get('/emergencyPetBoarding', (req, res) => {
+    EmergencyPetBoarding.find((err, emergencyPetBoardings) => {
         if (err) {
             console.log(err);
         } else {
-            res.json(foods);
+            res.json(emergencyPetBoardings);
         }
     });
 });
 
-/* GET Food in the shortest distance */
-router.get('/food/:currentLatitude/:currentLongitude', (req, res) => {
+/* GET EmergencyPetBoarding in the shortest distance */
+router.get('/emergencyPetBoarding/:currentLatitude/:currentLongitude', (req, res) => {
     // Get current location from Get method parameters
     let currentLocation = {
         "currentLatitude": req.params.currentLatitude,
         "currentLongitude": req.params.currentLongitude
     };
-    Food.find((err, foods) => {
+    EmergencyPetBoarding.find((err, emergencyPetBoardings) => {
         if (err) {
             console.log(err);
         } else {
             let distanceArray = [];
-            let foodAndDistanceMapArray = [];
-            foods.forEach((eachFood) => {
-                // Get eachDistance between each food location and current location
-                let eachLatitude = eachFood.latitude;
-                let eachLongitude = eachFood.longitude;
+            let emergencyPetBoardingAndDistanceMapArray = [];
+            emergencyPetBoardings.forEach((eachEmergencyPetBoarding) => {
+                // Get eachDistance between each emergencyPetBoarding location and current location
+                let eachLatitude = eachEmergencyPetBoarding.latitude;
+                let eachLongitude = eachEmergencyPetBoarding.longitude;
                 let eachDistance = getDistance(eachLatitude, eachLongitude,
                     currentLocation.currentLatitude, currentLocation.currentLongitude);
-                let eachFoodAndDistanceMap = {
-                    food: eachFood,
+                let eachEmergencyPetBoardingAndDistanceMap = {
+                    emergencyPetBoarding: eachEmergencyPetBoarding,
                     distance: eachDistance
                 };
-                // Construct distanceArray and foodAndDistanceMapArray
+                // Construct distanceArray and emergencyPetBoardingAndDistanceMapArray
                 distanceArray.push(eachDistance);
-                foodAndDistanceMapArray.push(eachFoodAndDistanceMap);
+                emergencyPetBoardingAndDistanceMapArray.push(eachEmergencyPetBoardingAndDistanceMap);
             });
             // Sort distance in ascending order
             distanceArray.sort(function (a, b) {
@@ -51,15 +51,15 @@ router.get('/food/:currentLatitude/:currentLongitude', (req, res) => {
             let shortestDistance = distanceArray[0];
             console.log('Shortest Distance: ' + shortestDistance);
 
-            // Get food service info which is in the shortest distance
-            let foodInShortestDistance = null;
-            foodAndDistanceMapArray.forEach((eachFoodAndDistanceMap) => {
-                if (eachFoodAndDistanceMap.distance == shortestDistance) {
-                    foodInShortestDistance = eachFoodAndDistanceMap.food;
+            // Get emergencyPetBoarding service info which is in the shortest distance
+            let emergencyPetBoardingInShortestDistance = null;
+            emergencyPetBoardingAndDistanceMapArray.forEach((eachEmergencyPetBoardingAndDistanceMap) => {
+                if (eachEmergencyPetBoardingAndDistanceMap.distance == shortestDistance) {
+                    emergencyPetBoardingInShortestDistance = eachEmergencyPetBoardingAndDistanceMap.emergencyPetBoarding;
                 }
             });
-            console.log(foodInShortestDistance);
-            res.json(foodInShortestDistance);
+            console.log(emergencyPetBoardingInShortestDistance);
+            res.json(emergencyPetBoardingInShortestDistance);
         }
     });
 });

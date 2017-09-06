@@ -30,31 +30,49 @@
 
               <ul class="nav md-pills nav-justified pills-secondary">
                 <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" role="tab" (click)="clickFood($event)">I'm Hungry</a>
+                  <a class="nav-link" data-toggle="tab" role="tab" (click)="clickFood($event)">I'm hungry</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" data-toggle="tab" role="tab" (click)="clickAccommodation($event)">I Want Shelter</a>
+                  <a class="nav-link active" data-toggle="tab" role="tab" (click)="clickAccommodation($event)">I want shelter</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" role="tab" (click)="clickHealthcare($event)">I'm Ill</a>
+                  <a class="nav-link" data-toggle="tab" role="tab" (click)="clickHealthcare($event)">I'm ill</a>
                 </li>
               </ul>
 
               <!--Body-->
               <form class="form-inline">
-                <div class="row wow fadeInRight container" *ngIf="isCheckboxVisible">
+                <!-- Accommodation Radio Button -->
+                <div class="row wow fadeInRight container" *ngIf="isAccommodationSelected">
 
-                  <div class="col-md-6 form-group">
-                    <input type="checkbox" id="checkbox11" (change)="tickForYou($event)">
-                    <label for="checkbox11">For You</label>
+                  <div class="col-md-12 form-group">
+                    <input name="group20" type="radio" id="radio120" checked="checked" (change)="tickAccommodationRadioButton($event)">
+                    <label for="radio120">Stay with my pet</label>
                   </div>
 
-                  <div class="col-md-6 form-group">
-                    <input type="checkbox" id="checkbox22" (change)="tickForYourPets($event)">
-                    <label for="checkbox22">For Your Pets</label>
+                  <div class="col-md-12 form-group">
+                    <input name="group20" type="radio" id="radio121" (change)="tickEmergencyPetBoardingRadioButton($event)">
+                    <label for="radio121">Just for my pet</label>
                   </div>
+
                 </div>
 
+                <!-- Health Radio Button -->
+                <div class="row wow fadeInRight container" *ngIf="isHealthcareSelected">
+
+                  <div class="col-md-12 form-group">
+                    <input name="group20" type="radio" id="radio120" checked="checked" (change)="tickHealcareRadioButton($event)">
+                    <label for="radio120">I want to see a doctor</label>
+                  </div>
+
+                  <div class="col-md-12 form-group">
+                    <input name="group20" type="radio" id="radio121" (change)="tickPetHealthcareRadioButton($event)">
+                    <label for="radio121">I want a doctor for my pet</label>
+                  </div>
+
+                </div>
+
+                <!-- Select Button -->
                 <div class="col-md-12 wow fadeInRight">
                   <div class="text-center">
                     <br>
@@ -67,7 +85,9 @@
               </form>
 
               <br>
-              <div *ngIf="isNearestFoodPanelVisiable">
+
+              <!-- Nearest Service Panel -->
+              <div *ngIf="isNearestServicePanelVisiable">
                 <div class="row">
                   <div class="col-md-12">
                     <div class="text-center z-depth-1">
@@ -109,21 +129,7 @@
 </div>
 <!--/.Mask-->
 
-
-<!-- <app-map [foodInMap]="food" [foodsInMap]="foods"></app-map> -->
-<!-- <app-map [nearestServiceInMap]="nearestService" [allServicesInMap]="allServices" [isFoodServiceInMapVisiable]="isFoodServiceMapVisiable"
-  [isNearestServiceSelectedInMap]="isNearestServiceSelected" [areAllServicesSelectedInMap]="areAllServicesSelected">
-</app-map>
-
-<app-map [nearestServiceInMap]="nearestService" [allServicesInMap]="allServices" [isAccommodationServiceInMapVisiable]="isAccommodationServiceMapVisiable"
-  [isNearestServiceSelectedInMap]="isNearestServiceSelected" [areAllServicesSelectedInMap]="areAllServicesSelected">
-</app-map>
-
-
-<app-map [nearestServiceInMap]="nearestService" [allServicesInMap]="allServices" [isHealthcareServiceInMapVisiable]="isHealthcareServiceMapVisiable"
-  [isNearestServiceSelectedInMap]="isNearestServiceSelected" [areAllServicesSelectedInMap]="areAllServicesSelected">
-  ></app-map> -->
-
+<!-- Food Map -->
 <div class="container" id="service-map" *ngIf="isNearestServiceSelected && isFoodServiceMapVisiable">
   <div class="divider-new">
     <h2 class="h2-responsive wow fadeInDown">Service on the Map</h2>
@@ -136,7 +142,9 @@
           <agm-info-window [isOpen]="isOpen"><strong>Your Current Position</strong></agm-info-window>
         </agm-marker>
         <agm-marker [latitude]="nearestService.latitude" [longitude]="nearestService.longitude" (markerClick)="clickedMarker()">
-          <agm-info-window><strong>{{ nearestService.name }}</strong></agm-info-window>
+          <agm-info-window>
+            <strong>{{ nearestService.name }}</strong><br> {{ nearestService.address }}<br> {{ nearestService.phone }}
+          </agm-info-window>
         </agm-marker>
       </agm-map>
     </div>
@@ -155,7 +163,181 @@
           <agm-info-window [isOpen]="isOpen"><strong>Your Current Position</strong></agm-info-window>
         </agm-marker>
         <agm-marker *ngFor="let service of allServices" [latitude]="service.latitude" [longitude]="service.longitude" (markerClick)="clickedMarker()">
-          <agm-info-window><strong>{{ service.name }}</strong></agm-info-window>
+          <agm-info-window>
+            <strong>{{ service.name }}</strong><br> {{ service.address }}<br> {{ service.phone }}
+          </agm-info-window>
+        </agm-marker>
+      </agm-map>
+    </div>
+  </section>
+</div>
+
+<!-- Accommodation Map -->
+<div class="container" id="service-map" *ngIf="isNearestServiceSelected && isAccommodationServiceMapVisiable">
+  <div class="divider-new">
+    <h2 class="h2-responsive wow fadeInDown">Service on the Map</h2>
+  </div>
+
+  <section>
+    <div id="map" class="z-depth-2 wow fadeInUp">
+      <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+        <agm-marker [latitude]="latitude" [longitude]="longitude" (markerClick)="clickedMarker()" [iconUrl]="'assets/img/marker/placeholder.png'">
+          <agm-info-window [isOpen]="isOpen"><strong>Your Current Position</strong></agm-info-window>
+        </agm-marker>
+        <agm-marker [latitude]="nearestService.latitude" [longitude]="nearestService.longitude" (markerClick)="clickedMarker()">
+          <agm-info-window>
+            <strong>{{ nearestService.name }}</strong><br> {{ nearestService.address }}<br> {{ nearestService.phone }}
+          </agm-info-window>
+        </agm-marker>
+      </agm-map>
+    </div>
+  </section>
+</div>
+
+<div class="container" id="service-map" *ngIf="areAllServicesSelected && isAccommodationServiceMapVisiable">
+  <div class="divider-new">
+    <h2 class="h2-responsive wow fadeInDown">Service on the Map</h2>
+  </div>
+
+  <section>
+    <div id="map" class="z-depth-2 wow fadeInUp">
+      <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+        <agm-marker [latitude]="latitude" [longitude]="longitude" (markerClick)="clickedMarker()" [iconUrl]="'assets/img/marker/placeholder.png'">
+          <agm-info-window [isOpen]="isOpen"><strong>Your Current Position</strong></agm-info-window>
+        </agm-marker>
+        <agm-marker *ngFor="let service of allServices" [latitude]="service.latitude" [longitude]="service.longitude" (markerClick)="clickedMarker()">
+          <agm-info-window>
+            <strong>{{ service.name }}</strong><br> {{ service.address }}<br> {{ service.phone }}
+          </agm-info-window>
+        </agm-marker>
+      </agm-map>
+    </div>
+  </section>
+</div>
+
+<!-- EmergencyPetBoarding Map -->
+<div class="container" id="service-map" *ngIf="isNearestServiceSelected && isEmergencyPetBoardingServiceMapVisiable">
+  <div class="divider-new">
+    <h2 class="h2-responsive wow fadeInDown">Service on the Map</h2>
+  </div>
+
+  <section>
+    <div id="map" class="z-depth-2 wow fadeInUp">
+      <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+        <agm-marker [latitude]="latitude" [longitude]="longitude" (markerClick)="clickedMarker()" [iconUrl]="'assets/img/marker/placeholder.png'">
+          <agm-info-window [isOpen]="isOpen"><strong>Your Current Position</strong></agm-info-window>
+        </agm-marker>
+        <agm-marker [latitude]="nearestService.latitude" [longitude]="nearestService.longitude" (markerClick)="clickedMarker()">
+          <agm-info-window>
+            <strong>{{ nearestService.name }}</strong><br> {{ nearestService.address }}<br> {{ nearestService.phone }}
+          </agm-info-window>
+        </agm-marker>
+      </agm-map>
+    </div>
+  </section>
+</div>
+
+<div class="container" id="service-map" *ngIf="areAllServicesSelected && isEmergencyPetBoardingServiceMapVisiable">
+  <div class="divider-new">
+    <h2 class="h2-responsive wow fadeInDown">Service on the Map</h2>
+  </div>
+
+  <section>
+    <div id="map" class="z-depth-2 wow fadeInUp">
+      <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+        <agm-marker [latitude]="latitude" [longitude]="longitude" (markerClick)="clickedMarker()" [iconUrl]="'assets/img/marker/placeholder.png'">
+          <agm-info-window [isOpen]="isOpen"><strong>Your Current Position</strong></agm-info-window>
+        </agm-marker>
+        <agm-marker *ngFor="let service of allServices" [latitude]="service.latitude" [longitude]="service.longitude" (markerClick)="clickedMarker()">
+          <agm-info-window>
+            <strong>{{ service.name }}</strong><br> {{ service.address }}<br> {{ service.phone }}
+          </agm-info-window>
+        </agm-marker>
+      </agm-map>
+    </div>
+  </section>
+</div>
+
+<!-- Healthcare Map -->
+<div class="container" id="service-map" *ngIf="isNearestServiceSelected && isHealthcareServiceMapVisiable">
+  <div class="divider-new">
+    <h2 class="h2-responsive wow fadeInDown">Service on the Map</h2>
+  </div>
+
+  <section>
+    <div id="map" class="z-depth-2 wow fadeInUp">
+      <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+        <agm-marker [latitude]="latitude" [longitude]="longitude" (markerClick)="clickedMarker()" [iconUrl]="'assets/img/marker/placeholder.png'">
+          <agm-info-window [isOpen]="isOpen"><strong>Your Current Position</strong></agm-info-window>
+        </agm-marker>
+        <agm-marker [latitude]="nearestService.latitude" [longitude]="nearestService.longitude" (markerClick)="clickedMarker()">
+          <agm-info-window>
+            <strong>{{ nearestService.name }}</strong><br> {{ nearestService.address }}<br> {{ nearestService.phone }}
+          </agm-info-window>
+        </agm-marker>
+      </agm-map>
+    </div>
+  </section>
+</div>
+
+<div class="container" id="service-map" *ngIf="areAllServicesSelected && isHealthcareServiceMapVisiable">
+  <div class="divider-new">
+    <h2 class="h2-responsive wow fadeInDown">Service on the Map</h2>
+  </div>
+
+  <section>
+    <div id="map" class="z-depth-2 wow fadeInUp">
+      <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+        <agm-marker [latitude]="latitude" [longitude]="longitude" (markerClick)="clickedMarker()" [iconUrl]="'assets/img/marker/placeholder.png'">
+          <agm-info-window [isOpen]="isOpen"><strong>Your Current Position</strong></agm-info-window>
+        </agm-marker>
+        <agm-marker *ngFor="let service of allServices" [latitude]="service.latitude" [longitude]="service.longitude" (markerClick)="clickedMarker()">
+          <agm-info-window>
+            <strong>{{ service.name }}</strong><br> {{ service.address }}<br> {{ service.phone }}
+          </agm-info-window>
+        </agm-marker>
+      </agm-map>
+    </div>
+  </section>
+</div>
+
+<!-- PetHealthcare Map -->
+<div class="container" id="service-map" *ngIf="isNearestServiceSelected && isPetHealthcareServiceMapVisiable">
+  <div class="divider-new">
+    <h2 class="h2-responsive wow fadeInDown">Service on the Map</h2>
+  </div>
+
+  <section>
+    <div id="map" class="z-depth-2 wow fadeInUp">
+      <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+        <agm-marker [latitude]="latitude" [longitude]="longitude" (markerClick)="clickedMarker()" [iconUrl]="'assets/img/marker/placeholder.png'">
+          <agm-info-window [isOpen]="isOpen"><strong>Your Current Position</strong></agm-info-window>
+        </agm-marker>
+        <agm-marker [latitude]="nearestService.latitude" [longitude]="nearestService.longitude" (markerClick)="clickedMarker()">
+          <agm-info-window>
+            <strong>{{ nearestService.name }}</strong><br> {{ nearestService.address }}<br> {{ nearestService.phone }}
+          </agm-info-window>
+        </agm-marker>
+      </agm-map>
+    </div>
+  </section>
+</div>
+
+<div class="container" id="service-map" *ngIf="areAllServicesSelected && isPetHealthcareServiceMapVisiable">
+  <div class="divider-new">
+    <h2 class="h2-responsive wow fadeInDown">Service on the Map</h2>
+  </div>
+
+  <section>
+    <div id="map" class="z-depth-2 wow fadeInUp">
+      <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+        <agm-marker [latitude]="latitude" [longitude]="longitude" (markerClick)="clickedMarker()" [iconUrl]="'assets/img/marker/placeholder.png'">
+          <agm-info-window [isOpen]="isOpen"><strong>Your Current Position</strong></agm-info-window>
+        </agm-marker>
+        <agm-marker *ngFor="let service of allServices" [latitude]="service.latitude" [longitude]="service.longitude" (markerClick)="clickedMarker()">
+          <agm-info-window>
+            <strong>{{ service.name }}</strong><br> {{ service.address }}<br> {{ service.phone }}
+          </agm-info-window>
         </agm-marker>
       </agm-map>
     </div>

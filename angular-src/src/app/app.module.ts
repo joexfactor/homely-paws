@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { FoodService } from './services/food.service';
+import { AccommodationService } from './services/accommodation.service';
+import { HealthcareService } from './services/healthcare.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MaskComponent } from './components/mask/mask.component';
 import { MainContainerComponent } from './components/main-container/main-container.component';
@@ -51,7 +53,7 @@ const appRoutes: Routes = [
     ToastModule.forRoot(),
     BrowserAnimationsModule
   ],
-  providers: [FoodService],
+  providers: [FoodService, AccommodationService, HealthcareService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

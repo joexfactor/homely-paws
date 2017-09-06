@@ -6,12 +6,18 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const config = require('./config/db');
-const index = require('./routes/foodRoutes');
+const food = require('./routes/foodRoutes');
+const accommodation = require('./routes/accommodationRoutes');
+const emergencyPetBoarding = require('./routes/emergencyPetBoardingRoutes');
+const healthcare = require('./routes/healthcareRoutes');
+const petHealthcare = require('./routes/petHealthcareRoutes');
 var cors = require('cors');
 
 mongoose.Promise = global.Promise;
 // Connect to Mongoose
-mongoose.connect(config.homelyPawsDB, { useMongoClient: true }).then(
+mongoose.connect(config.homelyPawsDB, {
+    useMongoClient: true
+}).then(
     () => {
         console.log('MongoDB is connected');
     },
@@ -28,14 +34,20 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+app.use('/', food);
+app.use('/', accommodation);
+app.use('/', emergencyPetBoarding);
+app.use('/', healthcare);
+app.use('/', petHealthcare);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
