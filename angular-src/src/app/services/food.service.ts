@@ -17,15 +17,15 @@ export class FoodService {
   }
 
   getFoods() {
-    return this.http.get('http://localhost:8080/food')
-      .map(res => res.json());
-    // return this.http.get('food')
+    // return this.http.get('http://localhost:8080/food')
     //   .map(res => res.json());
+    return this.http.get('food')
+      .map(res => res.json());
   }
 
   getNearestFood() {
-    const url = 'http://localhost:8080/food/' + this.latitude + '/' + this.longitude;
-    //const url = 'food/' + this.latitude + '/' + this.longitude;
+    // const url = 'http://localhost:8080/food/' + this.latitude + '/' + this.longitude;
+    const url = 'food/' + this.latitude + '/' + this.longitude;
     console.log('getNearestFood url: ' + url);
     return this.http.get(url)
       .map(res => res.json());
