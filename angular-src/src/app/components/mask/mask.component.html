@@ -1,0 +1,163 @@
+<!--Mask-->
+<div class="view hm-black-strong">
+  <div class="full-bg-img flex-center">
+    <div class="container">
+      <div class="row" id="home">
+
+        <!--First column-->
+        <div class="col-lg-6">
+          <div class="description">
+            <h2 class="h2-responsive wow fadeInLeft">Kindness is Powerful</h2>
+            <hr class="hr-dark">
+            <p class="wow fadeInLeft col-sm-12" data-wow-delay="0.4s">We don’t see things as they are, we see them as we are.</p>
+            <br>
+            <a class="btn btn-ptc wow fadeInLeft" href="#about-us" data-wow-delay="0.7s">Learn more</a>
+          </div>
+        </div>
+        <!--/.First column-->
+
+        <!--Second column-->
+        <div class="col-lg-6">
+
+          <!--Form-->
+          <div class="card wow fadeInRight">
+            <div class="card-block">
+              <!--Header-->
+              <div class="text-center">
+                <h3><i class="fa"></i>How can we help?</h3>
+                <hr>
+              </div>
+
+              <ul class="nav md-pills nav-justified pills-secondary">
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" role="tab" (click)="clickFood($event)">I'm Hungry</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab" role="tab" (click)="clickAccommodation($event)">I Want Shelter</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" role="tab" (click)="clickHealthcare($event)">I'm Ill</a>
+                </li>
+              </ul>
+
+              <!--Body-->
+              <form class="form-inline">
+                <div class="row wow fadeInRight container" *ngIf="isCheckboxVisible">
+
+                  <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox11" (change)="tickForYou($event)">
+                    <label for="checkbox11">For You</label>
+                  </div>
+
+                  <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox22" (change)="tickForYourPets($event)">
+                    <label for="checkbox22">For Your Pets</label>
+                  </div>
+                </div>
+
+                <div class="col-md-12 wow fadeInRight">
+                  <div class="text-center">
+                    <br>
+                    <button type="button" class="btn btn-mdb" (click)="searchNearestService($event)">I Want Nearest One</button>
+                    <a>
+                      <button type="button" class="btn btn-mdb" (click)="searchAllServices($event)">I Want All</button>
+                    </a>
+                  </div>
+                </div>
+              </form>
+
+              <br>
+              <div *ngIf="isNearestFoodPanelVisiable">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="text-center z-depth-1">
+                      <br>
+                      <!--Header-->
+                      <div class="text-center">
+                        <h3><i class="fa"></i>Here is the Nearest Service</h3>
+                        <hr>
+                      </div>
+                      <div>
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <h3><span class="badge badge-primary">Name: {{ nearestService.name }}</span></h3>
+                          </li>
+                          <li class="list-group-item">
+                            <h4><span class="badge badge-success">Address: {{ nearestService.address }}</span></h4>
+                          </li>
+                          <a href="#service-map" class="btn btn-mdb">Take me there</a>
+                          <br>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="progress primary-color-dark" *ngIf="!isLoadingCompleted">
+                  <div class="indeterminate"></div>
+                </div> -->
+
+              </div>
+            </div>
+
+          </div>
+          <!--/.Form-->
+        </div>
+        <!--/Second column-->
+      </div>
+    </div>
+  </div>
+</div>
+<!--/.Mask-->
+
+
+<!-- <app-map [foodInMap]="food" [foodsInMap]="foods"></app-map> -->
+<!-- <app-map [nearestServiceInMap]="nearestService" [allServicesInMap]="allServices" [isFoodServiceInMapVisiable]="isFoodServiceMapVisiable"
+  [isNearestServiceSelectedInMap]="isNearestServiceSelected" [areAllServicesSelectedInMap]="areAllServicesSelected">
+</app-map>
+
+<app-map [nearestServiceInMap]="nearestService" [allServicesInMap]="allServices" [isAccommodationServiceInMapVisiable]="isAccommodationServiceMapVisiable"
+  [isNearestServiceSelectedInMap]="isNearestServiceSelected" [areAllServicesSelectedInMap]="areAllServicesSelected">
+</app-map>
+
+
+<app-map [nearestServiceInMap]="nearestService" [allServicesInMap]="allServices" [isHealthcareServiceInMapVisiable]="isHealthcareServiceMapVisiable"
+  [isNearestServiceSelectedInMap]="isNearestServiceSelected" [areAllServicesSelectedInMap]="areAllServicesSelected">
+  ></app-map> -->
+
+<div class="container" id="service-map" *ngIf="isNearestServiceSelected && isFoodServiceMapVisiable">
+  <div class="divider-new">
+    <h2 class="h2-responsive wow fadeInDown">Service on the Map</h2>
+  </div>
+
+  <section>
+    <div id="map" class="z-depth-2 wow fadeInUp">
+      <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+        <agm-marker [latitude]="latitude" [longitude]="longitude" (markerClick)="clickedMarker()" [iconUrl]="'assets/img/marker/placeholder.png'">
+          <agm-info-window [isOpen]="isOpen"><strong>Your Current Position</strong></agm-info-window>
+        </agm-marker>
+        <agm-marker [latitude]="nearestService.latitude" [longitude]="nearestService.longitude" (markerClick)="clickedMarker()">
+          <agm-info-window><strong>{{ nearestService.name }}</strong></agm-info-window>
+        </agm-marker>
+      </agm-map>
+    </div>
+  </section>
+</div>
+
+<div class="container" id="service-map" *ngIf="areAllServicesSelected && isFoodServiceMapVisiable">
+  <div class="divider-new">
+    <h2 class="h2-responsive wow fadeInDown">Service on the Map</h2>
+  </div>
+
+  <section>
+    <div id="map" class="z-depth-2 wow fadeInUp">
+      <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+        <agm-marker [latitude]="latitude" [longitude]="longitude" (markerClick)="clickedMarker()" [iconUrl]="'assets/img/marker/placeholder.png'">
+          <agm-info-window [isOpen]="isOpen"><strong>Your Current Position</strong></agm-info-window>
+        </agm-marker>
+        <agm-marker *ngFor="let service of allServices" [latitude]="service.latitude" [longitude]="service.longitude" (markerClick)="clickedMarker()">
+          <agm-info-window><strong>{{ service.name }}</strong></agm-info-window>
+        </agm-marker>
+      </agm-map>
+    </div>
+  </section>
+</div>
