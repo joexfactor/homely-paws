@@ -681,11 +681,16 @@ var MaskComponent = (function () {
         navigator.geolocation.getCurrentPosition(function (pos) {
             _this.latitude = pos.coords.latitude;
             _this.longitude = pos.coords.longitude;
+            _this.isLocationServiceAvailable = true;
             _this.isOpen = true;
             _this.zoom = 10;
             console.log('Your current position is:');
             console.log('Latitude:' + _this.latitude);
             console.log('Longitude:' + _this.longitude);
+        }, function (error) {
+            _this.isLocationServiceAvailable = false;
+            console.log(error);
+            _this.toastr.warning('Location service is not available, please allow the location service!');
         });
     };
     // If search nearest one button is clicked
@@ -700,68 +705,80 @@ var MaskComponent = (function () {
         console.log("isPetHealthcareRadioButtonSelected: " + this.isPetHealthcareRadioButtonSelected);
         // 1. If food tab is selected
         if (this.isFoodSelected) {
-            this.foodService.getNearestFood()
-                .subscribe(function (food) {
-                _this.nearestService = food;
-                _this.isNearestServicePanelVisiable = true;
-                _this.isFoodServiceMapVisiable = true;
-                _this.isAccommodationServiceMapVisiable = false;
-                _this.isEmergencyPetBoardingServiceMapVisiable = false;
-                _this.isHealthcareServiceMapVisiable = false;
-                _this.isPetHealthcareServiceMapVisiable = false;
-            });
+            console.log("isLocationServiceAvailable: " + this.isLocationServiceAvailable);
+            setTimeout(function () {
+                _this.foodService.getNearestFood()
+                    .subscribe(function (food) {
+                    _this.nearestService = food;
+                    _this.isNearestServicePanelVisiable = true;
+                    _this.isFoodServiceMapVisiable = true;
+                    _this.isAccommodationServiceMapVisiable = false;
+                    _this.isEmergencyPetBoardingServiceMapVisiable = false;
+                    _this.isHealthcareServiceMapVisiable = false;
+                    _this.isPetHealthcareServiceMapVisiable = false;
+                });
+            }, 0);
+            // })
         }
         // 2. If accommodation tab is selected and accommodation radio button is ticked
         if (this.isAccommodationSelected && this.isAccommodationRadioButtonSelected) {
-            this.accommodationService.getNearestAccommodation()
-                .subscribe(function (accommodation) {
-                _this.nearestService = accommodation;
-                _this.isNearestServicePanelVisiable = true;
-                _this.isAccommodationServiceMapVisiable = true;
-                _this.isFoodServiceMapVisiable = false;
-                _this.isEmergencyPetBoardingServiceMapVisiable = false;
-                _this.isHealthcareServiceMapVisiable = false;
-                _this.isPetHealthcareServiceMapVisiable = false;
-            });
+            setTimeout(function () {
+                _this.accommodationService.getNearestAccommodation()
+                    .subscribe(function (accommodation) {
+                    _this.nearestService = accommodation;
+                    _this.isNearestServicePanelVisiable = true;
+                    _this.isAccommodationServiceMapVisiable = true;
+                    _this.isFoodServiceMapVisiable = false;
+                    _this.isEmergencyPetBoardingServiceMapVisiable = false;
+                    _this.isHealthcareServiceMapVisiable = false;
+                    _this.isPetHealthcareServiceMapVisiable = false;
+                });
+            }, 0);
         }
         // 3. If accommodation tab is selected and emergencyPetBoarding radio button is ticked
         if (this.isAccommodationSelected && this.isEmergencyPetBoardingRadioButtonSelected) {
-            this.accommodationService.getNearestEmergencyPetBoarding()
-                .subscribe(function (emergencyPetBoarding) {
-                _this.nearestService = emergencyPetBoarding;
-                _this.isNearestServicePanelVisiable = true;
-                _this.isEmergencyPetBoardingServiceMapVisiable = true;
-                _this.isFoodServiceMapVisiable = false;
-                _this.isAccommodationServiceMapVisiable = false;
-                _this.isHealthcareServiceMapVisiable = false;
-                _this.isPetHealthcareServiceMapVisiable = false;
-            });
+            setTimeout(function () {
+                _this.accommodationService.getNearestEmergencyPetBoarding()
+                    .subscribe(function (emergencyPetBoarding) {
+                    _this.nearestService = emergencyPetBoarding;
+                    _this.isNearestServicePanelVisiable = true;
+                    _this.isEmergencyPetBoardingServiceMapVisiable = true;
+                    _this.isFoodServiceMapVisiable = false;
+                    _this.isAccommodationServiceMapVisiable = false;
+                    _this.isHealthcareServiceMapVisiable = false;
+                    _this.isPetHealthcareServiceMapVisiable = false;
+                });
+            }, 0);
         }
         // 4. If healthcare tab is selected and healthcare radio button is ticked
         if (this.isHealthcareSelected && this.isHealthcareRadioButtonSelected) {
-            this.healthcareService.getNearestHealthcare()
-                .subscribe(function (healthcare) {
-                _this.nearestService = healthcare;
-                _this.isNearestServicePanelVisiable = true;
-                _this.isHealthcareServiceMapVisiable = true;
-                _this.isFoodServiceMapVisiable = false;
-                _this.isAccommodationServiceMapVisiable = false;
-                _this.isEmergencyPetBoardingServiceMapVisiable = false;
-                _this.isPetHealthcareServiceMapVisiable = false;
-            });
+            setTimeout(function () {
+                _this.healthcareService.getNearestHealthcare()
+                    .subscribe(function (healthcare) {
+                    _this.nearestService = healthcare;
+                    _this.isNearestServicePanelVisiable = true;
+                    _this.isHealthcareServiceMapVisiable = true;
+                    _this.isFoodServiceMapVisiable = false;
+                    _this.isAccommodationServiceMapVisiable = false;
+                    _this.isEmergencyPetBoardingServiceMapVisiable = false;
+                    _this.isPetHealthcareServiceMapVisiable = false;
+                });
+            }, 0);
         }
         // 5. If healthcare tab is selected and petHealthcare radio button is ticked
         if (this.isHealthcareSelected && this.isPetHealthcareRadioButtonSelected) {
-            this.healthcareService.getNearestPetHealthcare()
-                .subscribe(function (petHealthcare) {
-                _this.nearestService = petHealthcare;
-                _this.isNearestServicePanelVisiable = true;
-                _this.isPetHealthcareServiceMapVisiable = true;
-                _this.isFoodServiceMapVisiable = false;
-                _this.isAccommodationServiceMapVisiable = false;
-                _this.isEmergencyPetBoardingServiceMapVisiable = false;
-                _this.isHealthcareServiceMapVisiable = false;
-            });
+            setTimeout(function () {
+                _this.healthcareService.getNearestPetHealthcare()
+                    .subscribe(function (petHealthcare) {
+                    _this.nearestService = petHealthcare;
+                    _this.isNearestServicePanelVisiable = true;
+                    _this.isPetHealthcareServiceMapVisiable = true;
+                    _this.isFoodServiceMapVisiable = false;
+                    _this.isAccommodationServiceMapVisiable = false;
+                    _this.isEmergencyPetBoardingServiceMapVisiable = false;
+                    _this.isHealthcareServiceMapVisiable = false;
+                });
+            }, 0);
         }
     };
     // If search all button is clicked
@@ -776,68 +793,78 @@ var MaskComponent = (function () {
         console.log("isPetHealthcareRadioButtonSelected: " + this.isPetHealthcareRadioButtonSelected);
         // 1. If food tab is selected
         if (this.isFoodSelected) {
-            this.foodService.getFoods()
-                .subscribe(function (foods) {
-                _this.allServices = foods;
-                _this.isFoodServiceMapVisiable = true;
-                _this.isAccommodationServiceMapVisiable = false;
-                _this.isEmergencyPetBoardingServiceMapVisiable = false;
-                _this.isHealthcareServiceMapVisiable = false;
-                _this.isPetHealthcareServiceMapVisiable = false;
-                window.location.href = '#service-map';
-            });
+            setTimeout(function () {
+                _this.foodService.getFoods()
+                    .subscribe(function (foods) {
+                    _this.allServices = foods;
+                    _this.isFoodServiceMapVisiable = true;
+                    _this.isAccommodationServiceMapVisiable = false;
+                    _this.isEmergencyPetBoardingServiceMapVisiable = false;
+                    _this.isHealthcareServiceMapVisiable = false;
+                    _this.isPetHealthcareServiceMapVisiable = false;
+                    window.location.href = '#service-map';
+                });
+            }, 0);
         }
         // 2. If accommodation tab is selected and accommodation radio button is ticked
         if (this.isAccommodationSelected && this.isAccommodationRadioButtonSelected) {
-            this.accommodationService.getAccommodations()
-                .subscribe(function (accommodations) {
-                _this.allServices = accommodations;
-                _this.isAccommodationServiceMapVisiable = true;
-                _this.isFoodServiceMapVisiable = false;
-                _this.isEmergencyPetBoardingServiceMapVisiable = false;
-                _this.isHealthcareServiceMapVisiable = false;
-                _this.isPetHealthcareServiceMapVisiable = false;
-                window.location.href = '#service-map';
-            });
+            setTimeout(function () {
+                _this.accommodationService.getAccommodations()
+                    .subscribe(function (accommodations) {
+                    _this.allServices = accommodations;
+                    _this.isAccommodationServiceMapVisiable = true;
+                    _this.isFoodServiceMapVisiable = false;
+                    _this.isEmergencyPetBoardingServiceMapVisiable = false;
+                    _this.isHealthcareServiceMapVisiable = false;
+                    _this.isPetHealthcareServiceMapVisiable = false;
+                    window.location.href = '#service-map';
+                });
+            }, 0);
         }
         // 3. If accommodation tab is selected and emergencyPetBoarding radio button is ticked
         if (this.isAccommodationSelected && this.isEmergencyPetBoardingRadioButtonSelected) {
-            this.accommodationService.getEmergencyPetBoardings()
-                .subscribe(function (emergencyPetBoardings) {
-                _this.allServices = emergencyPetBoardings;
-                _this.isAccommodationServiceMapVisiable = true;
-                _this.isFoodServiceMapVisiable = false;
-                _this.isEmergencyPetBoardingServiceMapVisiable = false;
-                _this.isHealthcareServiceMapVisiable = false;
-                _this.isPetHealthcareServiceMapVisiable = false;
-                window.location.href = '#service-map';
-            });
+            setTimeout(function () {
+                _this.accommodationService.getEmergencyPetBoardings()
+                    .subscribe(function (emergencyPetBoardings) {
+                    _this.allServices = emergencyPetBoardings;
+                    _this.isAccommodationServiceMapVisiable = true;
+                    _this.isFoodServiceMapVisiable = false;
+                    _this.isEmergencyPetBoardingServiceMapVisiable = false;
+                    _this.isHealthcareServiceMapVisiable = false;
+                    _this.isPetHealthcareServiceMapVisiable = false;
+                    window.location.href = '#service-map';
+                });
+            }, 0);
         }
         // 4. If healthcare tab is selected and healthcare radio button is ticked
         if (this.isHealthcareSelected && this.isHealthcareRadioButtonSelected) {
-            this.healthcareService.getHealthcares()
-                .subscribe(function (healthcares) {
-                _this.allServices = healthcares;
-                _this.isHealthcareServiceMapVisiable = true;
-                _this.isFoodServiceMapVisiable = false;
-                _this.isAccommodationServiceMapVisiable = false;
-                _this.isEmergencyPetBoardingServiceMapVisiable = false;
-                _this.isPetHealthcareServiceMapVisiable = false;
-                window.location.href = '#service-map';
-            });
+            setTimeout(function () {
+                _this.healthcareService.getHealthcares()
+                    .subscribe(function (healthcares) {
+                    _this.allServices = healthcares;
+                    _this.isHealthcareServiceMapVisiable = true;
+                    _this.isFoodServiceMapVisiable = false;
+                    _this.isAccommodationServiceMapVisiable = false;
+                    _this.isEmergencyPetBoardingServiceMapVisiable = false;
+                    _this.isPetHealthcareServiceMapVisiable = false;
+                    window.location.href = '#service-map';
+                });
+            }, 0);
         }
         // 5. If healthcare tab is selected and petHealthcare radio button is ticked
         if (this.isHealthcareSelected && this.isPetHealthcareRadioButtonSelected) {
-            this.healthcareService.getPetHealthcares()
-                .subscribe(function (petHealthcares) {
-                _this.allServices = petHealthcares;
-                _this.isPetHealthcareServiceMapVisiable = true;
-                _this.isFoodServiceMapVisiable = false;
-                _this.isAccommodationServiceMapVisiable = false;
-                _this.isEmergencyPetBoardingServiceMapVisiable = false;
-                _this.isHealthcareServiceMapVisiable = false;
-                window.location.href = '#service-map';
-            });
+            setTimeout(function () {
+                _this.healthcareService.getPetHealthcares()
+                    .subscribe(function (petHealthcares) {
+                    _this.allServices = petHealthcares;
+                    _this.isPetHealthcareServiceMapVisiable = true;
+                    _this.isFoodServiceMapVisiable = false;
+                    _this.isAccommodationServiceMapVisiable = false;
+                    _this.isEmergencyPetBoardingServiceMapVisiable = false;
+                    _this.isHealthcareServiceMapVisiable = false;
+                    window.location.href = '#service-map';
+                });
+            }, 0);
         }
     };
     MaskComponent.prototype.clickFood = function (event) {
