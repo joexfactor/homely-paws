@@ -24,7 +24,7 @@ export class AccommodationService {
   }
 
   getNearestAccommodation() {
-    //const url = 'http://localhost:8080/accommodation/' + this.latitude + '/' + this.longitude;
+    // const url = 'http://localhost:8080/accommodation/' + this.latitude + '/' + this.longitude;
     const url = 'accommodation/' + this.latitude + '/' + this.longitude;
     console.log('getNearestAccommodation url: ' + url);
     return this.http.get(url)
@@ -39,7 +39,7 @@ export class AccommodationService {
   }
 
   getNearestEmergencyPetBoarding() {
-    //const url = 'http://localhost:8080/emergencyPetBoarding/' + this.latitude + '/' + this.longitude;
+    // const url = 'http://localhost:8080/emergencyPetBoarding/' + this.latitude + '/' + this.longitude;
     const url = 'emergencyPetBoarding/' + this.latitude + '/' + this.longitude;
     console.log('getNearestEmergencyPetBoarding url: ' + url);
     return this.http.get(url)
