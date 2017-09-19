@@ -17,32 +17,32 @@ export class HealthcareService {
   }
 
   getHealthcares() {
-    const url = 'http://localhost:8080/healthcares/' + this.latitude + '/' + this.longitude;
-    // const url = 'healthcares/' + this.latitude + '/' + this.longitude;
+    // const url = 'http://localhost:8080/healthcares/' + this.latitude + '/' + this.longitude;
+    const url = 'healthcares/' + this.latitude + '/' + this.longitude;
     console.log('getHealthcares url: ' + url);
     return this.http.get(url)
       .map(res => res.json());
   }
 
   getNearestHealthcare() {
-    const url = 'http://localhost:8080/healthcare/' + this.latitude + '/' + this.longitude;
-    // const url = 'healthcare/' + this.latitude + '/' + this.longitude;
+    // const url = 'http://localhost:8080/healthcare/' + this.latitude + '/' + this.longitude;
+    const url = 'healthcare/' + this.latitude + '/' + this.longitude;
     console.log('getNearestHealthcare url: ' + url);
     return this.http.get(url)
       .map(res => res.json());
   }
 
   getPetHealthcares() {
-    const url = 'http://localhost:8080/petHealthcares/' + this.latitude + '/' + this.longitude;
-    // const url = 'petHealthcares/' + this.latitude + '/' + this.longitude;
+    // const url = 'http://localhost:8080/petHealthcares/' + this.latitude + '/' + this.longitude;
+    const url = 'petHealthcares/' + this.latitude + '/' + this.longitude;
     console.log('getPetHealthcares url: ' + url);
     return this.http.get(url)
       .map(res => res.json());
   }
 
   getNearestPetHealthcare() {
-    const url = 'http://localhost:8080/petHealthcare/' + this.latitude + '/' + this.longitude;
-    // const url = 'petHealthcare/' + this.latitude + '/' + this.longitude;
+    // const url = 'http://localhost:8080/petHealthcare/' + this.latitude + '/' + this.longitude;
+    const url = 'petHealthcare/' + this.latitude + '/' + this.longitude;
     console.log('getNearestPetHealthcare url: ' + url);
     return this.http.get(url)
       .map(res => res.json());

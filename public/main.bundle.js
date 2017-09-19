@@ -1177,29 +1177,29 @@ var AccommodationService = (function () {
         });
     }
     AccommodationService.prototype.getAccommodations = function () {
-        var url = 'http://localhost:8080/accommodations/' + this.latitude + '/' + this.longitude;
-        // const url = 'accommodations/' + this.latitude + '/' + this.longitude;
+        // const url = 'http://localhost:8080/accommodations/' + this.latitude + '/' + this.longitude;
+        var url = 'accommodations/' + this.latitude + '/' + this.longitude;
         console.log('getAccommodations url: ' + url);
         return this.http.get(url)
             .map(function (res) { return res.json(); });
     };
     AccommodationService.prototype.getNearestAccommodation = function () {
-        var url = 'http://localhost:8080/accommodation/' + this.latitude + '/' + this.longitude;
-        // const url = 'accommodation/' + this.latitude + '/' + this.longitude;
+        // const url = 'http://localhost:8080/accommodation/' + this.latitude + '/' + this.longitude;
+        var url = 'accommodation/' + this.latitude + '/' + this.longitude;
         console.log('getNearestAccommodation url: ' + url);
         return this.http.get(url)
             .map(function (res) { return res.json(); });
     };
     AccommodationService.prototype.getEmergencyPetBoardings = function () {
-        var url = 'http://localhost:8080/emergencyPetBoardings/' + this.latitude + '/' + this.longitude;
-        // const url = 'emergencyPetBoardings/' + this.latitude + '/' + this.longitude;
+        // const url = 'http://localhost:8080/emergencyPetBoardings/' + this.latitude + '/' + this.longitude;
+        var url = 'emergencyPetBoardings/' + this.latitude + '/' + this.longitude;
         console.log('getEmergencyPetBoardings url: ' + url);
         return this.http.get(url)
             .map(function (res) { return res.json(); });
     };
     AccommodationService.prototype.getNearestEmergencyPetBoarding = function () {
-        var url = 'http://localhost:8080/emergencyPetBoarding/' + this.latitude + '/' + this.longitude;
-        // const url = 'emergencyPetBoarding/' + this.latitude + '/' + this.longitude;
+        // const url = 'http://localhost:8080/emergencyPetBoarding/' + this.latitude + '/' + this.longitude;
+        var url = 'emergencyPetBoarding/' + this.latitude + '/' + this.longitude;
         console.log('getNearestEmergencyPetBoarding url: ' + url);
         return this.http.get(url)
             .map(function (res) { return res.json(); });
@@ -1248,15 +1248,15 @@ var FoodService = (function () {
         });
     }
     FoodService.prototype.getFoods = function () {
-        var url = 'http://localhost:8080/foods/' + this.latitude + '/' + this.longitude;
-        // const url = 'foods/' + this.latitude + '/' + this.longitude;
+        // const url = 'http://localhost:8080/foods/' + this.latitude + '/' + this.longitude;
+        var url = 'foods/' + this.latitude + '/' + this.longitude;
         console.log('getFoods url: ' + url);
         return this.http.get(url)
             .map(function (res) { return res.json(); });
     };
     FoodService.prototype.getNearestFood = function () {
-        var url = 'http://localhost:8080/food/' + this.latitude + '/' + this.longitude;
-        // const url = 'food/' + this.latitude + '/' + this.longitude;
+        // const url = 'http://localhost:8080/food/' + this.latitude + '/' + this.longitude;
+        var url = 'food/' + this.latitude + '/' + this.longitude;
         console.log('getNearestFood url: ' + url);
         return this.http.get(url)
             .map(function (res) { return res.json(); });
@@ -1305,29 +1305,29 @@ var HealthcareService = (function () {
         });
     }
     HealthcareService.prototype.getHealthcares = function () {
-        var url = 'http://localhost:8080/healthcares/' + this.latitude + '/' + this.longitude;
-        // const url = 'healthcares/' + this.latitude + '/' + this.longitude;
+        // const url = 'http://localhost:8080/healthcares/' + this.latitude + '/' + this.longitude;
+        var url = 'healthcares/' + this.latitude + '/' + this.longitude;
         console.log('getHealthcares url: ' + url);
         return this.http.get(url)
             .map(function (res) { return res.json(); });
     };
     HealthcareService.prototype.getNearestHealthcare = function () {
-        var url = 'http://localhost:8080/healthcare/' + this.latitude + '/' + this.longitude;
-        // const url = 'healthcare/' + this.latitude + '/' + this.longitude;
+        // const url = 'http://localhost:8080/healthcare/' + this.latitude + '/' + this.longitude;
+        var url = 'healthcare/' + this.latitude + '/' + this.longitude;
         console.log('getNearestHealthcare url: ' + url);
         return this.http.get(url)
             .map(function (res) { return res.json(); });
     };
     HealthcareService.prototype.getPetHealthcares = function () {
-        var url = 'http://localhost:8080/petHealthcares/' + this.latitude + '/' + this.longitude;
-        // const url = 'petHealthcares/' + this.latitude + '/' + this.longitude;
+        // const url = 'http://localhost:8080/petHealthcares/' + this.latitude + '/' + this.longitude;
+        var url = 'petHealthcares/' + this.latitude + '/' + this.longitude;
         console.log('getPetHealthcares url: ' + url);
         return this.http.get(url)
             .map(function (res) { return res.json(); });
     };
     HealthcareService.prototype.getNearestPetHealthcare = function () {
-        var url = 'http://localhost:8080/petHealthcare/' + this.latitude + '/' + this.longitude;
-        // const url = 'petHealthcare/' + this.latitude + '/' + this.longitude;
+        // const url = 'http://localhost:8080/petHealthcare/' + this.latitude + '/' + this.longitude;
+        var url = 'petHealthcare/' + this.latitude + '/' + this.longitude;
         console.log('getNearestPetHealthcare url: ' + url);
         return this.http.get(url)
             .map(function (res) { return res.json(); });
@@ -1376,29 +1376,29 @@ var OtherService = (function () {
         });
     }
     OtherService.prototype.getWifiHotspots = function () {
-        var url = 'http://localhost:8080/wifiHotspots/' + this.latitude + '/' + this.longitude;
-        // const url = 'wifiHotspots/' + this.latitude + '/' + this.longitude;
+        // const url = 'http://localhost:8080/wifiHotspots/' + this.latitude + '/' + this.longitude;
+        var url = 'wifiHotspots/' + this.latitude + '/' + this.longitude;
         console.log('getWifiHotspots url: ' + url);
         return this.http.get(url)
             .map(function (res) { return res.json(); });
     };
     OtherService.prototype.getNearestWifiHotspot = function () {
-        var url = 'http://localhost:8080/wifiHotspot/' + this.latitude + '/' + this.longitude;
-        // const url = 'wifiHotspot/' + this.latitude + '/' + this.longitude;
+        // const url = 'http://localhost:8080/wifiHotspot/' + this.latitude + '/' + this.longitude;
+        var url = 'wifiHotspot/' + this.latitude + '/' + this.longitude;
         console.log('getNearestWifiHotspot url: ' + url);
         return this.http.get(url)
             .map(function (res) { return res.json(); });
     };
     OtherService.prototype.getEvents = function () {
-        var url = 'http://localhost:8080/events/' + this.latitude + '/' + this.longitude;
-        // const url = 'events/' + this.latitude + '/' + this.longitude;
+        // const url = 'http://localhost:8080/events/' + this.latitude + '/' + this.longitude;
+        var url = 'events/' + this.latitude + '/' + this.longitude;
         console.log('getEvents url: ' + url);
         return this.http.get(url)
             .map(function (res) { return res.json(); });
     };
     OtherService.prototype.getNearestEvent = function () {
-        var url = 'http://localhost:8080/event/' + this.latitude + '/' + this.longitude;
-        // const url = 'event/' + this.latitude + '/' + this.longitude;
+        // const url = 'http://localhost:8080/event/' + this.latitude + '/' + this.longitude;
+        var url = 'event/' + this.latitude + '/' + this.longitude;
         console.log('getNearestEvent url: ' + url);
         return this.http.get(url)
             .map(function (res) { return res.json(); });
