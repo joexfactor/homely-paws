@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
+import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -10,6 +12,7 @@ import { AppComponent } from './app.component';
 import { FoodService } from './services/food.service';
 import { AccommodationService } from './services/accommodation.service';
 import { HealthcareService } from './services/healthcare.service';
+import { OtherService } from './services/other.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MaskComponent } from './components/mask/mask.component';
 import { MainContainerComponent } from './components/main-container/main-container.component';
@@ -45,15 +48,17 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD0Aw_AuBepbQ1imricl1iVdkbu7tw8YWQ'
     }),
     ToastModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AgmJsMarkerClustererModule
   ],
-  providers: [FoodService, AccommodationService, HealthcareService],
+  providers: [FoodService, AccommodationService, HealthcareService, OtherService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

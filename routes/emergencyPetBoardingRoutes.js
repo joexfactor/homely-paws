@@ -5,13 +5,32 @@ const router = express.Router();
 // Require emergencyPetBoarding model in our routes module
 const EmergencyPetBoarding = require('../models/emergencyPetBoardingModel');
 
-/* GET EmergencyPetBoarding */
-router.get('/emergencyPetBoarding', (req, res) => {
+/* GET EmergencyPetBoardings */
+router.get('/emergencyPetBoardings/:currentLatitude/:currentLongitude', (req, res) => {
+    // Get current location from Get method parameters
+    let currentLocation = {
+        "currentLatitude": req.params.currentLatitude,
+        "currentLongitude": req.params.currentLongitude
+    };
+    let emergencyPetBoardingAndDistanceMapArray = [];
     EmergencyPetBoarding.find((err, emergencyPetBoardings) => {
         if (err) {
             console.log(err);
+            return res.send();
         } else {
-            res.json(emergencyPetBoardings);
+            emergencyPetBoardings.forEach((eachEmergencyPetBoarding) => {
+                // Get eachDistance between each emergencyPetBoarding location and current location
+                let eachLatitude = eachEmergencyPetBoarding.latitude;
+                let eachLongitude = eachEmergencyPetBoarding.longitude;
+                let eachDistance = Number(getDistance(eachLatitude, eachLongitude,
+                    currentLocation.currentLatitude, currentLocation.currentLongitude)).toFixed(2);
+                let eachEmergencyPetBoardingAndDistanceMap = {
+                    result: eachEmergencyPetBoarding,
+                    distance: Number(eachDistance)
+                };
+                emergencyPetBoardingAndDistanceMapArray.push(eachEmergencyPetBoardingAndDistanceMap);
+            });
+            res.json(emergencyPetBoardingAndDistanceMapArray);
         }
     });
 });
@@ -26,6 +45,7 @@ router.get('/emergencyPetBoarding/:currentLatitude/:currentLongitude', (req, res
     EmergencyPetBoarding.find((err, emergencyPetBoardings) => {
         if (err) {
             console.log(err);
+            return res.send();
         } else {
             let distanceArray = [];
             let emergencyPetBoardingAndDistanceMapArray = [];
@@ -33,11 +53,11 @@ router.get('/emergencyPetBoarding/:currentLatitude/:currentLongitude', (req, res
                 // Get eachDistance between each emergencyPetBoarding location and current location
                 let eachLatitude = eachEmergencyPetBoarding.latitude;
                 let eachLongitude = eachEmergencyPetBoarding.longitude;
-                let eachDistance = getDistance(eachLatitude, eachLongitude,
-                    currentLocation.currentLatitude, currentLocation.currentLongitude);
+                let eachDistance = Number(getDistance(eachLatitude, eachLongitude,
+                    currentLocation.currentLatitude, currentLocation.currentLongitude)).toFixed(2);
                 let eachEmergencyPetBoardingAndDistanceMap = {
-                    emergencyPetBoarding: eachEmergencyPetBoarding,
-                    distance: eachDistance
+                    result: eachEmergencyPetBoarding,
+                    distance: Number(eachDistance)
                 };
                 // Construct distanceArray and emergencyPetBoardingAndDistanceMapArray
                 distanceArray.push(eachDistance);
@@ -52,14 +72,14 @@ router.get('/emergencyPetBoarding/:currentLatitude/:currentLongitude', (req, res
             console.log('Shortest Distance: ' + shortestDistance);
 
             // Get emergencyPetBoarding service info which is in the shortest distance
-            let emergencyPetBoardingInShortestDistance = null;
+            let emergencyPetBoardingInShortestDistanceMap = null;
             emergencyPetBoardingAndDistanceMapArray.forEach((eachEmergencyPetBoardingAndDistanceMap) => {
                 if (eachEmergencyPetBoardingAndDistanceMap.distance == shortestDistance) {
-                    emergencyPetBoardingInShortestDistance = eachEmergencyPetBoardingAndDistanceMap.emergencyPetBoarding;
+                    emergencyPetBoardingInShortestDistanceMap = eachEmergencyPetBoardingAndDistanceMap;
                 }
             });
-            console.log(emergencyPetBoardingInShortestDistance);
-            res.json(emergencyPetBoardingInShortestDistance);
+            console.log(emergencyPetBoardingInShortestDistanceMap);
+            res.json(emergencyPetBoardingInShortestDistanceMap);
         }
     });
 });

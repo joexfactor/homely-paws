@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class FoodService {
+export class OtherService {
   latitude: number;
   longitude: number;
 
@@ -16,18 +16,18 @@ export class FoodService {
     });
   }
 
-  getFoods() {
-    const url = 'http://localhost:8080/foods/' + this.latitude + '/' + this.longitude;
-    // const url = 'foods/' + this.latitude + '/' + this.longitude;
-    console.log('getFoods url: ' + url);
+  getWifiHotspots() {
+    const url = 'http://localhost:8080/wifiHotspots/' + this.latitude + '/' + this.longitude;
+    // const url = 'wifiHotspots/' + this.latitude + '/' + this.longitude;
+    console.log('getWifiHotspots url: ' + url);
     return this.http.get(url)
       .map(res => res.json());
   }
 
-  getNearestFood() {
-    const url = 'http://localhost:8080/food/' + this.latitude + '/' + this.longitude;
-    // const url = 'food/' + this.latitude + '/' + this.longitude;
-    console.log('getNearestFood url: ' + url);
+  getNearestWifiHotspot() {
+    const url = 'http://localhost:8080/wifiHotspot/' + this.latitude + '/' + this.longitude;
+    // const url = 'wifiHotspot/' + this.latitude + '/' + this.longitude;
+    console.log('getNearestWifiHotspot url: ' + url);
     return this.http.get(url)
       .map(res => res.json());
   }

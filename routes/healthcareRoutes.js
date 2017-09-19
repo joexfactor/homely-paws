@@ -5,13 +5,32 @@ const router = express.Router();
 // Require Healthcare model in our routes module
 const Healthcare = require('../models/healthcareModel');
 
-/* GET Healthcare */
-router.get('/healthcare', (req, res) => {
+/* GET Healthcares */
+router.get('/healthcares/:currentLatitude/:currentLongitude', (req, res) => {
+    // Get current location from Get method parameters
+    let currentLocation = {
+        "currentLatitude": req.params.currentLatitude,
+        "currentLongitude": req.params.currentLongitude
+    };
+    let healthcareAndDistanceMapArray = [];
     Healthcare.find((err, healthcares) => {
         if (err) {
             console.log(err);
+            return res.send();
         } else {
-            res.json(healthcares);
+            healthcares.forEach((eachHealthcare) => {
+                // Get eachDistance between each healthcare location and current location
+                let eachLatitude = eachHealthcare.latitude;
+                let eachLongitude = eachHealthcare.longitude;
+                let eachDistance = Number(getDistance(eachLatitude, eachLongitude,
+                    currentLocation.currentLatitude, currentLocation.currentLongitude)).toFixed(2);
+                let eachHealthcareAndDistanceMap = {
+                    result: eachHealthcare,
+                    distance: Number(eachDistance)
+                };
+                healthcareAndDistanceMapArray.push(eachHealthcareAndDistanceMap);
+            });
+            res.json(healthcareAndDistanceMapArray);
         }
     });
 });
@@ -26,6 +45,7 @@ router.get('/healthcare/:currentLatitude/:currentLongitude', (req, res) => {
     Healthcare.find((err, healthcares) => {
         if (err) {
             console.log(err);
+            return res.send();
         } else {
             let distanceArray = [];
             let healthcareAndDistanceMapArray = [];
@@ -33,11 +53,11 @@ router.get('/healthcare/:currentLatitude/:currentLongitude', (req, res) => {
                 // Get eachDistance between each healthcare location and current location
                 let eachLatitude = eachHealthcare.latitude;
                 let eachLongitude = eachHealthcare.longitude;
-                let eachDistance = getDistance(eachLatitude, eachLongitude,
-                    currentLocation.currentLatitude, currentLocation.currentLongitude);
+                let eachDistance = Number(getDistance(eachLatitude, eachLongitude,
+                    currentLocation.currentLatitude, currentLocation.currentLongitude)).toFixed(2);
                 let eachHealthcareAndDistanceMap = {
-                    healthcare: eachHealthcare,
-                    distance: eachDistance
+                    result: eachHealthcare,
+                    distance: Number(eachDistance)
                 };
                 // Construct distanceArray and healthcareAndDistanceMapArray
                 distanceArray.push(eachDistance);
@@ -52,14 +72,14 @@ router.get('/healthcare/:currentLatitude/:currentLongitude', (req, res) => {
             console.log('Shortest Distance: ' + shortestDistance);
 
             // Get healthcare service info which is in the shortest distance
-            let healthcareInShortestDistance = null;
+            let healthcareInShortestDistanceMap = null;
             healthcareAndDistanceMapArray.forEach((eachHealthcareAndDistanceMap) => {
                 if (eachHealthcareAndDistanceMap.distance == shortestDistance) {
-                    healthcareInShortestDistance = eachHealthcareAndDistanceMap.healthcare;
+                    healthcareInShortestDistanceMap = eachHealthcareAndDistanceMap;
                 }
             });
-            console.log(healthcareInShortestDistance);
-            res.json(healthcareInShortestDistance);
+            console.log(healthcareInShortestDistanceMap);
+            res.json(healthcareInShortestDistanceMap);
         }
     });
 });

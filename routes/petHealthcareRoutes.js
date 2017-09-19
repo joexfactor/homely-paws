@@ -5,13 +5,32 @@ const router = express.Router();
 // Require PetHealthcare model in our routes module
 const PetHealthcare = require('../models/petHealthcareModel');
 
-/* GET PetHealthcare */
-router.get('/petHealthcare', (req, res) => {
+/* GET PetHealthcares */
+router.get('/petHealthcares/:currentLatitude/:currentLongitude', (req, res) => {
+    // Get current location from Get method parameters
+    let currentLocation = {
+        "currentLatitude": req.params.currentLatitude,
+        "currentLongitude": req.params.currentLongitude
+    };
+    let petHealthcareAndDistanceMapArray = [];
     PetHealthcare.find((err, petHealthcares) => {
         if (err) {
             console.log(err);
+            return res.send();
         } else {
-            res.json(petHealthcares);
+            petHealthcares.forEach((eachPetHealthcare) => {
+                // Get eachDistance between each petHealthcare location and current location
+                let eachLatitude = eachPetHealthcare.latitude;
+                let eachLongitude = eachPetHealthcare.longitude;
+                let eachDistance = Number(getDistance(eachLatitude, eachLongitude,
+                    currentLocation.currentLatitude, currentLocation.currentLongitude)).toFixed(2);
+                let eachPetHealthcareAndDistanceMap = {
+                    result: eachPetHealthcare,
+                    distance: Number(eachDistance)
+                };
+                petHealthcareAndDistanceMapArray.push(eachPetHealthcareAndDistanceMap);
+            });
+            res.json(petHealthcareAndDistanceMapArray);
         }
     });
 });
@@ -26,6 +45,7 @@ router.get('/petHealthcare/:currentLatitude/:currentLongitude', (req, res) => {
     PetHealthcare.find((err, petHealthcares) => {
         if (err) {
             console.log(err);
+            return res.send();
         } else {
             let distanceArray = [];
             let petHealthcareAndDistanceMapArray = [];
@@ -33,11 +53,11 @@ router.get('/petHealthcare/:currentLatitude/:currentLongitude', (req, res) => {
                 // Get eachDistance between each petHealthcare location and current location
                 let eachLatitude = eachPetHealthcare.latitude;
                 let eachLongitude = eachPetHealthcare.longitude;
-                let eachDistance = getDistance(eachLatitude, eachLongitude,
-                    currentLocation.currentLatitude, currentLocation.currentLongitude);
+                let eachDistance = Number(getDistance(eachLatitude, eachLongitude,
+                    currentLocation.currentLatitude, currentLocation.currentLongitude)).toFixed(2);
                 let eachPetHealthcareAndDistanceMap = {
-                    petHealthcare: eachPetHealthcare,
-                    distance: eachDistance
+                    result: eachPetHealthcare,
+                    distance: Number(eachDistance)
                 };
                 // Construct distanceArray and petHealthcareAndDistanceMapArray
                 distanceArray.push(eachDistance);
@@ -52,14 +72,14 @@ router.get('/petHealthcare/:currentLatitude/:currentLongitude', (req, res) => {
             console.log('Shortest Distance: ' + shortestDistance);
 
             // Get petHealthcare service info which is in the shortest distance
-            let petHealthcareInShortestDistance = null;
+            let petHealthcareInShortestDistanceMap = null;
             petHealthcareAndDistanceMapArray.forEach((eachPetHealthcareAndDistanceMap) => {
                 if (eachPetHealthcareAndDistanceMap.distance == shortestDistance) {
-                    petHealthcareInShortestDistance = eachPetHealthcareAndDistanceMap.petHealthcare;
+                    petHealthcareInShortestDistanceMap = eachPetHealthcareAndDistanceMap;
                 }
             });
-            console.log(petHealthcareInShortestDistance);
-            res.json(petHealthcareInShortestDistance);
+            console.log(petHealthcareInShortestDistanceMap);
+            res.json(petHealthcareInShortestDistanceMap);
         }
     });
 });

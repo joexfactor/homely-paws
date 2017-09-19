@@ -2,64 +2,64 @@
 const express = require('express');
 const router = express.Router();
 
-// Require Food model in our routes module
-const Food = require('../models/foodModel');
+// Require WifiHotspot model in our routes module
+const WifiHotspot = require('../models/wifiHotspotModel');
 
-/* GET Foods */
-router.get('/foods/:currentLatitude/:currentLongitude', (req, res) => {
+/* GET WifiHotspots */
+router.get('/wifiHotspots/:currentLatitude/:currentLongitude', (req, res) => {
     // Get current location from Get method parameters
     let currentLocation = {
         "currentLatitude": req.params.currentLatitude,
         "currentLongitude": req.params.currentLongitude
     };
-    let foodAndDistanceMapArray = [];
-    Food.find((err, foods) => {
+    let wifiHotspotAndDistanceMapArray = [];
+    WifiHotspot.find((err, wifiHotspots) => {
         if (err) {
             console.log(err);
         } else {
-            foods.forEach((eachFood) => {
-                // Get eachDistance between each food location and current location
-                let eachLatitude = eachFood.latitude;
-                let eachLongitude = eachFood.longitude;
+            wifiHotspots.forEach((eachWifiHotspot) => {
+                // Get eachDistance between each wifiHotspot location and current location
+                let eachLatitude = eachWifiHotspot.latitude;
+                let eachLongitude = eachWifiHotspot.longitude;
                 let eachDistance = Number(getDistance(eachLatitude, eachLongitude,
                     currentLocation.currentLatitude, currentLocation.currentLongitude)).toFixed(2);
-                let eachFoodAndDistanceMap = {
-                    result: eachFood,
+                let eachWifiHotspotAndDistanceMap = {
+                    result: eachWifiHotspot,
                     distance: Number(eachDistance)
                 };
-                foodAndDistanceMapArray.push(eachFoodAndDistanceMap);
+                wifiHotspotAndDistanceMapArray.push(eachWifiHotspotAndDistanceMap);
             });
-            res.json(foodAndDistanceMapArray);
+            res.json(wifiHotspotAndDistanceMapArray);
         }
     });
 });
 
-/* GET Food in the shortest distance */
-router.get('/food/:currentLatitude/:currentLongitude', (req, res) => {
+/* GET WifiHotspot in the shortest distance */
+router.get('/wifiHotspot/:currentLatitude/:currentLongitude', (req, res) => {
     // Get current location from Get method parameters
     let currentLocation = {
         "currentLatitude": req.params.currentLatitude,
         "currentLongitude": req.params.currentLongitude
     };
-    Food.find((err, foods) => {
+    WifiHotspot.find((err, wifiHotspots) => {
         if (err) {
             console.log(err);
         } else {
             let distanceArray = [];
-            let foodAndDistanceMapArray = [];
-            foods.forEach((eachFood) => {
-                // Get eachDistance between each food location and current location
-                let eachLatitude = eachFood.latitude;
-                let eachLongitude = eachFood.longitude;
+            let wifiHotspotAndDistanceMapArray = [];
+            wifiHotspots.forEach((eachWifiHotspot) => {
+                // Get eachDistance between each wifiHotspot location and current location
+                let eachLatitude = eachWifiHotspot.latitude;
+                let eachLongitude = eachWifiHotspot.longitude;
                 let eachDistance = Number(getDistance(eachLatitude, eachLongitude,
                     currentLocation.currentLatitude, currentLocation.currentLongitude)).toFixed(2);
-                let eachFoodAndDistanceMap = {
-                    result: eachFood,
+                let eachWifiHotspotAndDistanceMap = {
+                    result: eachWifiHotspot,
                     distance: Number(eachDistance)
                 };
-                // Construct distanceArray and foodAndDistanceMapArray
+                // Construct distanceArray and wifiHotspotAndDistanceMapArray
                 distanceArray.push(eachDistance);
-                foodAndDistanceMapArray.push(eachFoodAndDistanceMap);
+                wifiHotspotAndDistanceMapArray.push(eachWifiHotspotAndDistanceMap);
             });
             // Sort distance in ascending order
             distanceArray.sort(function (a, b) {
@@ -69,15 +69,15 @@ router.get('/food/:currentLatitude/:currentLongitude', (req, res) => {
             let shortestDistance = distanceArray[0];
             console.log('Shortest Distance: ' + shortestDistance);
 
-            // Get food service info which is in the shortest distance
-            let foodInShorestDistanceMap = null;
-            foodAndDistanceMapArray.forEach((eachFoodAndDistanceMap) => {
-                if (eachFoodAndDistanceMap.distance == shortestDistance) {
-                    foodInShorestDistanceMap = eachFoodAndDistanceMap;
+            // Get wifiHotspot service info which is in the shortest distance
+            let wifiHotspotInShorestDistanceMap = null;
+            wifiHotspotAndDistanceMapArray.forEach((eachWifiHotspotAndDistanceMap) => {
+                if (eachWifiHotspotAndDistanceMap.distance == shortestDistance) {
+                    wifiHotspotInShorestDistanceMap = eachWifiHotspotAndDistanceMap;
                 }
             });
-            console.log(foodInShorestDistanceMap);
-            res.json(foodInShorestDistanceMap);
+            console.log(wifiHotspotInShorestDistanceMap);
+            res.json(wifiHotspotInShorestDistanceMap);
         }
     });
 });

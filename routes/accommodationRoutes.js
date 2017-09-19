@@ -5,13 +5,31 @@ const router = express.Router();
 // Require Accommodation model in our routes module
 const Accommodation = require('../models/accommodationModel');
 
-/* GET Accommodation */
-router.get('/accommodation', (req, res) => {
+/* GET Accommodations */
+router.get('/accommodations/:currentLatitude/:currentLongitude', (req, res) => {
+    // Get current location from Get method parameters
+    let currentLocation = {
+        "currentLatitude": req.params.currentLatitude,
+        "currentLongitude": req.params.currentLongitude
+    };
+    let accommodationAndDistanceMapArray = [];
     Accommodation.find((err, accommodations) => {
         if (err) {
             console.log(err);
         } else {
-            res.json(accommodations);
+            accommodations.forEach((eachAccommodation) => {
+                // Get eachDistance between each accommodation location and current location
+                let eachLatitude = eachAccommodation.latitude;
+                let eachLongitude = eachAccommodation.longitude;
+                let eachDistance = Number(getDistance(eachLatitude, eachLongitude,
+                    currentLocation.currentLatitude, currentLocation.currentLongitude)).toFixed(2);
+                let eachAccommodationAndDistanceMap = {
+                    result: eachAccommodation,
+                    distance: Number(eachDistance)
+                };
+                accommodationAndDistanceMapArray.push(eachAccommodationAndDistanceMap);
+            });
+            res.json(accommodationAndDistanceMapArray);
         }
     });
 });
@@ -33,11 +51,11 @@ router.get('/accommodation/:currentLatitude/:currentLongitude', (req, res) => {
                 // Get eachDistance between each accommodation location and current location
                 let eachLatitude = eachAccommodation.latitude;
                 let eachLongitude = eachAccommodation.longitude;
-                let eachDistance = getDistance(eachLatitude, eachLongitude,
-                    currentLocation.currentLatitude, currentLocation.currentLongitude);
+                let eachDistance = Number(getDistance(eachLatitude, eachLongitude,
+                    currentLocation.currentLatitude, currentLocation.currentLongitude)).toFixed(2);
                 let eachAccommodationAndDistanceMap = {
-                    accommodation: eachAccommodation,
-                    distance: eachDistance
+                    result: eachAccommodation,
+                    distance: Number(eachDistance)
                 };
                 // Construct distanceArray and accommodationAndDistanceMapArray
                 distanceArray.push(eachDistance);
@@ -52,14 +70,14 @@ router.get('/accommodation/:currentLatitude/:currentLongitude', (req, res) => {
             console.log('Shortest Distance: ' + shortestDistance);
 
             // Get accommodation service info which is in the shortest distance
-            let accommodationInShortestDistance = null;
+            let accommodationInShortestDistanceMap = null;
             accommodationAndDistanceMapArray.forEach((eachAccommodationAndDistanceMap) => {
                 if (eachAccommodationAndDistanceMap.distance == shortestDistance) {
-                    accommodationInShortestDistance = eachAccommodationAndDistanceMap.accommodation;
+                    accommodationInShortestDistanceMap = eachAccommodationAndDistanceMap;
                 }
             });
-            console.log(accommodationInShortestDistance);
-            res.json(accommodationInShortestDistance);
+            console.log(accommodationInShortestDistanceMap);
+            res.json(accommodationInShortestDistanceMap);
         }
     });
 });
