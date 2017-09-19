@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 // Require WifiHotspot model in our routes module
-const WifiHotspot = require('../models/wifiHotspotModel');
+const WifiHotspot = require('../models/wifiHotSpotModel');
 
 /* GET WifiHotspots */
 router.get('/wifiHotspots/:currentLatitude/:currentLongitude', (req, res) => {
