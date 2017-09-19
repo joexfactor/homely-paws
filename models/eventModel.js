@@ -1,21 +1,13 @@
 /*jshint esversion: 6 */
 const mongoose = require('mongoose');
 
-// Food Schema
-const foodSchema = mongoose.Schema({
+// Event Schema
+const eventSchema = mongoose.Schema({
     name: {
         type: String,
         required: true
     },
     address: {
-        type: String,
-        required: true
-    },
-    phone: {
-        type: String,
-        required: true
-    },
-    operatingHours: {
         type: String,
         required: true
     },
@@ -28,7 +20,7 @@ const foodSchema = mongoose.Schema({
         required: true
     }
 }, {
-    collection: 'food-collection'
+    collection: 'event-collection'
 });
 
-module.exports = mongoose.model('Food', foodSchema);
+module.exports = mongoose.model('Event', eventSchema);

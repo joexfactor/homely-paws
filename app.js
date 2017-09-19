@@ -12,6 +12,7 @@ const emergencyPetBoarding = require('./routes/emergencyPetBoardingRoutes');
 const healthcare = require('./routes/healthcareRoutes');
 const petHealthcare = require('./routes/petHealthcareRoutes');
 const wifiHotspot = require('./routes/wifiHotspotRoutes');
+const eventInfo = require('./routes/eventRoutes');
 var cors = require('cors');
 
 mongoose.Promise = global.Promise;
@@ -50,6 +51,7 @@ app.use('/', emergencyPetBoarding);
 app.use('/', healthcare);
 app.use('/', petHealthcare);
 app.use('/', wifiHotspot);
+app.use('/', eventInfo);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

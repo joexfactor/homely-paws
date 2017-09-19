@@ -25,7 +25,7 @@ export class MaskComponent implements OnInit {
   isHealthcareRadioButtonSelected: boolean;
   isPetHealthcareRadioButtonSelected: boolean;
   isWifiRadioButtonSelected: boolean;
-  isEventsRadioButtonSelected: boolean;
+  isEventRadioButtonSelected: boolean;
 
   // Control map display or not
   isFoodServiceMapVisiable: boolean;
@@ -34,6 +34,7 @@ export class MaskComponent implements OnInit {
   isHealthcareServiceMapVisiable: boolean;
   isPetHealthcareServiceMapVisiable: boolean;
   isWifiServiceMapVisiable: boolean;
+  isEventMapVisiable: boolean;
 
   // Control button selected or not
   isNearestServiceSelected: boolean;
@@ -114,12 +115,14 @@ export class MaskComponent implements OnInit {
         this.foodService.getNearestFood()
           .subscribe(food => {
             this.nearestService = food;
+            console.log('nearestService: ', this.nearestService);
             this.isFoodServiceMapVisiable = true;
             this.isAccommodationServiceMapVisiable = false;
             this.isEmergencyPetBoardingServiceMapVisiable = false;
             this.isHealthcareServiceMapVisiable = false;
             this.isPetHealthcareServiceMapVisiable = false;
             this.isWifiServiceMapVisiable = false;
+            this.isEventMapVisiable = false;
             this.clickedMarker(this.nearestService);
             window.location.href = '#placeholder';
           });
@@ -138,6 +141,7 @@ export class MaskComponent implements OnInit {
             this.isHealthcareServiceMapVisiable = false;
             this.isPetHealthcareServiceMapVisiable = false;
             this.isWifiServiceMapVisiable = false;
+            this.isEventMapVisiable = false;
             this.clickedMarker(this.nearestService);
             window.location.href = '#placeholder';
           });
@@ -156,6 +160,7 @@ export class MaskComponent implements OnInit {
             this.isHealthcareServiceMapVisiable = false;
             this.isPetHealthcareServiceMapVisiable = false;
             this.isWifiServiceMapVisiable = false;
+            this.isEventMapVisiable = false;
             this.clickedMarker(this.nearestService);
             window.location.href = '#placeholder';
           });
@@ -174,6 +179,7 @@ export class MaskComponent implements OnInit {
             this.isEmergencyPetBoardingServiceMapVisiable = false;
             this.isPetHealthcareServiceMapVisiable = false;
             this.isWifiServiceMapVisiable = false;
+            this.isEventMapVisiable = false;
             this.clickedMarker(this.nearestService);
             window.location.href = '#placeholder';
           });
@@ -192,6 +198,7 @@ export class MaskComponent implements OnInit {
             this.isEmergencyPetBoardingServiceMapVisiable = false;
             this.isHealthcareServiceMapVisiable = false;
             this.isWifiServiceMapVisiable = false;
+            this.isEventMapVisiable = false;
             this.clickedMarker(this.nearestService);
             window.location.href = '#placeholder';
           });
@@ -204,12 +211,32 @@ export class MaskComponent implements OnInit {
         this.otherService.getNearestWifiHotspot()
           .subscribe(wifiHotspot => {
             this.nearestService = wifiHotspot;
+            this.isWifiServiceMapVisiable = true;
             this.isPetHealthcareServiceMapVisiable = false;
             this.isFoodServiceMapVisiable = false;
             this.isAccommodationServiceMapVisiable = false;
             this.isEmergencyPetBoardingServiceMapVisiable = false;
             this.isHealthcareServiceMapVisiable = false;
-            this.isWifiServiceMapVisiable = true;
+            this.isEventMapVisiable = false;
+            this.clickedMarker(this.nearestService);
+            window.location.href = '#placeholder';
+          });
+      }, 0);
+    }
+
+    // 7. If other service tab is selected and event radio button is ticked
+    if (this.isOtherServicesSelected && this.isEventRadioButtonSelected) {
+      setTimeout(() => {
+        this.otherService.getNearestEvent()
+          .subscribe(eventInfo => {
+            this.nearestService = eventInfo;
+            this.isEventMapVisiable = true;
+            this.isPetHealthcareServiceMapVisiable = false;
+            this.isFoodServiceMapVisiable = false;
+            this.isAccommodationServiceMapVisiable = false;
+            this.isEmergencyPetBoardingServiceMapVisiable = false;
+            this.isHealthcareServiceMapVisiable = false;
+            this.isWifiServiceMapVisiable = false;
             this.clickedMarker(this.nearestService);
             window.location.href = '#placeholder';
           });
@@ -239,6 +266,7 @@ export class MaskComponent implements OnInit {
             this.isHealthcareServiceMapVisiable = false;
             this.isPetHealthcareServiceMapVisiable = false;
             this.isWifiServiceMapVisiable = false;
+            this.isEventMapVisiable = false;
             this.rangeChange();
             window.location.href = '#placeholder';
           });
@@ -258,6 +286,7 @@ export class MaskComponent implements OnInit {
             this.isHealthcareServiceMapVisiable = false;
             this.isPetHealthcareServiceMapVisiable = false;
             this.isWifiServiceMapVisiable = false;
+            this.isEventMapVisiable = false;
             this.rangeChange();
             window.location.href = '#placeholder';
           });
@@ -277,6 +306,7 @@ export class MaskComponent implements OnInit {
             this.isHealthcareServiceMapVisiable = false;
             this.isPetHealthcareServiceMapVisiable = false;
             this.isWifiServiceMapVisiable = false;
+            this.isEventMapVisiable = false;
             this.rangeChange();
             window.location.href = '#placeholder';
           });
@@ -296,6 +326,7 @@ export class MaskComponent implements OnInit {
             this.isEmergencyPetBoardingServiceMapVisiable = false;
             this.isPetHealthcareServiceMapVisiable = false;
             this.isWifiServiceMapVisiable = false;
+            this.isEventMapVisiable = false;
             this.rangeChange();
             window.location.href = '#placeholder';
           });
@@ -315,6 +346,7 @@ export class MaskComponent implements OnInit {
             this.isEmergencyPetBoardingServiceMapVisiable = false;
             this.isHealthcareServiceMapVisiable = false;
             this.isWifiServiceMapVisiable = false;
+            this.isEventMapVisiable = false;
             this.rangeChange();
             window.location.href = '#placeholder';
           });
@@ -328,12 +360,33 @@ export class MaskComponent implements OnInit {
           .subscribe(wifiHotspots => {
             this.allServices = wifiHotspots;
             this.cachedAllServices = wifiHotspots;
+            this.isWifiServiceMapVisiable = true;
             this.isPetHealthcareServiceMapVisiable = false;
             this.isFoodServiceMapVisiable = false;
             this.isAccommodationServiceMapVisiable = false;
             this.isEmergencyPetBoardingServiceMapVisiable = false;
             this.isHealthcareServiceMapVisiable = false;
-            this.isWifiServiceMapVisiable = true;
+            this.isEventMapVisiable = false;
+            this.rangeChange();
+            window.location.href = '#placeholder';
+          });
+      }, 0);
+    }
+
+    // 7. If other service tab is selected and event radio button is ticked
+    if (this.isOtherServicesSelected && this.isEventRadioButtonSelected) {
+      setTimeout(() => {
+        this.otherService.getEvents()
+          .subscribe(events => {
+            this.allServices = events;
+            this.cachedAllServices = events;
+            this.isEventMapVisiable = true;
+            this.isPetHealthcareServiceMapVisiable = false;
+            this.isFoodServiceMapVisiable = false;
+            this.isAccommodationServiceMapVisiable = false;
+            this.isEmergencyPetBoardingServiceMapVisiable = false;
+            this.isHealthcareServiceMapVisiable = false;
+            this.isWifiServiceMapVisiable = false;
             this.rangeChange();
             window.location.href = '#placeholder';
           });
@@ -400,14 +453,14 @@ export class MaskComponent implements OnInit {
   tickWifiRadioButton(event) {
     if (event.target.checked) {
       this.isWifiRadioButtonSelected = true;
-      this.isEventsRadioButtonSelected = false;
+      this.isEventRadioButtonSelected = false;
     }
   }
 
   tickEventsRadioButton(event) {
     if (event.target.checked) {
       this.isWifiRadioButtonSelected = false;
-      this.isEventsRadioButtonSelected = true;
+      this.isEventRadioButtonSelected = true;
     }
   }
 
@@ -424,11 +477,11 @@ export class MaskComponent implements OnInit {
     this.allServices = filterServices;
   }
 
-  clickedMarker(service) {
+  clickedMarker(selectedService) {
     console.log('Marker clicked');
-    console.log(service);
+    console.log('selectedService: ', selectedService);
     this.isMarkerClicked = true;
-    this.selectedService = service;
+    this.selectedService = selectedService;
     this.googleMapDirectionUrl = 'https://maps.google.com?saddr=Current+Location&daddr='
       + this.selectedService.result.name + ' ' + this.selectedService.result.address;
     console.log('googleMapDirectionUrl: ' + this.googleMapDirectionUrl);
