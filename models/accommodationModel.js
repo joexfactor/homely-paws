@@ -15,6 +15,10 @@ const accommodationSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    operatingHours: {
+        type: String,
+        required: true
+    },
     latitude: {
         type: Number,
         required: true

@@ -83,10 +83,10 @@
                     <label for="wifiRadio">WIFI</label>
                   </div>
 
-                  <div class="col-lg-6 col-md-6 form-group">
+                  <!-- <div class="col-lg-6 col-md-6 form-group">
                     <input name="otherServicesGroup" type="radio" id="eventsRadio" (change)="tickEventsRadioButton($event)">
                     <label for="eventsRadio">Events</label>
-                  </div>
+                  </div> -->
 
                 </div>
 
@@ -184,17 +184,20 @@
 <div class="container" id="service-map" *ngIf="areAllServicesSelected && isFoodServiceMapVisiable">
 
   <div class="divider-new">
-    <h2 class="h2-responsive wow fadeInDown">Service providers within {{ rangeValue }} km</h2>
+    <h2 class="h2-responsive wow fadeInDown">Service Map</h2>
   </div>
 
+  <h2 class="h4-responsive wow fadeInDown text-center">
+    <Strong>Service providers within {{ rangeValue }} km (Drag the button to change the distance)</Strong>
+  </h2>
   <!-- Range -->
-  <div class="row">
-    <div class="col-md-12 mb-r">
-      <form class="range-field">
-        <input type="range" min="0" max="50" step="1" [(ngModel)]="rangeValue" name="range" (change)="rangeChange()" />
-      </form>
-    </div>
-  </div>
+  <!-- <div class="row"> -->
+  <!-- <div class="col-md-12 mb-r"> -->
+  <form class="range-field">
+    <input type="range" min="0" max="50" step="1" [(ngModel)]="rangeValue" name="range" (change)="rangeChange()">
+  </form>
+  <!-- </div> -->
+  <!-- </div> -->
   <!-- End Range -->
 
   <!-- Service Info Panel -->
@@ -252,6 +255,8 @@
         <h5 class="mb-1 h3-responsive"><strong>{{ selectedService.result.name }}</strong></h5>
       </div>
       <p class="mb-1">{{ selectedService.result.address }}</p>
+      <small>{{ selectedService.result.operatingHours }}</small>
+      <br>
       <a [href]="googleMapDirectionUrl" class="white-text" target="_blank">
         <h6 class="h5-responsive wow fadeInLeft"><strong>Take Me There ( {{ selectedService.distance }} km )</strong></h6>
       </a>
@@ -282,17 +287,20 @@
 <div class="container" id="service-map" *ngIf="areAllServicesSelected && isAccommodationServiceMapVisiable">
 
   <div class="divider-new">
-    <h2 class="h2-responsive wow fadeInDown">Service providers within {{ rangeValue }} km</h2>
+    <h2 class="h2-responsive wow fadeInDown">Service Map</h2>
   </div>
 
+  <h2 class="h4-responsive wow fadeInDown text-center">
+    <Strong>Service providers within {{ rangeValue }} km (Drag the button to change the distance)</Strong>
+  </h2>
   <!-- Range -->
-  <div class="row">
-    <div class="col-md-12 mb-r">
-      <form class="range-field">
-        <input type="range" min="0" max="50" step="1" [(ngModel)]="rangeValue" name="range" (change)="rangeChange()" />
-      </form>
-    </div>
-  </div>
+  <!-- <div class="row"> -->
+  <!-- <div class="col-md-12 mb-r"> -->
+  <form class="range-field">
+    <input type="range" min="0" max="50" step="1" [(ngModel)]="rangeValue" name="range" (change)="rangeChange()">
+  </form>
+  <!-- </div> -->
+  <!-- </div> -->
   <!-- End Range -->
 
   <!-- Service Info Panel -->
@@ -302,6 +310,8 @@
         <h5 class="mb-1 h3-responsive"><strong>{{ selectedService.result.name }}</strong></h5>
       </div>
       <p class="mb-1">{{ selectedService.result.address }}</p>
+      <small>{{ selectedService.result.operatingHours }}</small>
+      <br>
       <a [href]="googleMapDirectionUrl" class="white-text" target="_blank">
         <h6 class="h5-responsive wow fadeInLeft"><strong>Take Me There ( {{ selectedService.distance }} km )</strong></h6>
       </a>
@@ -346,6 +356,8 @@
         <h5 class="mb-1 h3-responsive"><strong>{{ selectedService.result.name }}</strong></h5>
       </div>
       <p class="mb-1">{{ selectedService.result.address }}</p>
+      <small>{{ selectedService.result.operatingHours }}</small>
+      <br>
       <a [href]="googleMapDirectionUrl" class="white-text" target="_blank">
         <h6 class="h5-responsive wow fadeInLeft"><strong>Take Me There ( {{ selectedService.distance }} km )</strong></h6>
       </a>
@@ -376,17 +388,20 @@
 <div class="container" id="service-map" *ngIf="areAllServicesSelected && isEmergencyPetBoardingServiceMapVisiable">
 
   <div class="divider-new">
-    <h2 class="h2-responsive wow fadeInDown">Service providers within {{ rangeValue }} km</h2>
+    <h2 class="h2-responsive wow fadeInDown">Service Map</h2>
   </div>
 
+  <h2 class="h4-responsive wow fadeInDown text-center">
+    <Strong>Service providers within {{ rangeValue }} km (Drag the button to change the distance)</Strong>
+  </h2>
   <!-- Range -->
-  <div class="row">
-    <div class="col-md-12 mb-r">
-      <form class="range-field">
-        <input type="range" min="0" max="50" step="1" [(ngModel)]="rangeValue" name="range" (change)="rangeChange()" />
-      </form>
-    </div>
-  </div>
+  <!-- <div class="row"> -->
+  <!-- <div class="col-md-12 mb-r"> -->
+  <form class="range-field">
+    <input type="range" min="0" max="50" step="1" [(ngModel)]="rangeValue" name="range" (change)="rangeChange()">
+  </form>
+  <!-- </div> -->
+  <!-- </div> -->
   <!-- End Range -->
 
   <!-- Service Info Panel -->
@@ -396,6 +411,8 @@
         <h5 class="mb-1 h3-responsive"><strong>{{ selectedService.result.name }}</strong></h5>
       </div>
       <p class="mb-1">{{ selectedService.result.address }}</p>
+      <small>{{ selectedService.result.operatingHours }}</small>
+      <br>
       <a [href]="googleMapDirectionUrl" class="white-text" target="_blank">
         <h6 class="h5-responsive wow fadeInLeft"><strong>Take Me There ( {{ selectedService.distance }} km )</strong></h6>
       </a>
@@ -473,17 +490,20 @@
 <div class="container" id="service-map" *ngIf="areAllServicesSelected && isHealthcareServiceMapVisiable">
 
   <div class="divider-new">
-    <h2 class="h2-responsive wow fadeInDown">Service providers within {{ rangeValue }} km</h2>
+    <h2 class="h2-responsive wow fadeInDown">Service Map</h2>
   </div>
 
+  <h2 class="h4-responsive wow fadeInDown text-center">
+    <Strong>Service providers within {{ rangeValue }} km (Drag the button to change the distance)</Strong>
+  </h2>
   <!-- Range -->
-  <div class="row">
-    <div class="col-md-12 mb-r">
-      <form class="range-field">
-        <input type="range" min="0" max="50" step="1" [(ngModel)]="rangeValue" name="range" (change)="rangeChange()" />
-      </form>
-    </div>
-  </div>
+  <!-- <div class="row"> -->
+  <!-- <div class="col-md-12 mb-r"> -->
+  <form class="range-field">
+    <input type="range" min="0" max="50" step="1" [(ngModel)]="rangeValue" name="range" (change)="rangeChange()">
+  </form>
+  <!-- </div> -->
+  <!-- </div> -->
   <!-- End Range -->
 
   <!-- Service Info Panel -->
@@ -572,17 +592,20 @@
 <div class="container" id="service-map" *ngIf="areAllServicesSelected && isPetHealthcareServiceMapVisiable">
 
   <div class="divider-new">
-    <h2 class="h2-responsive wow fadeInDown">Service providers within {{ rangeValue }} km</h2>
+    <h2 class="h2-responsive wow fadeInDown">Service Map</h2>
   </div>
 
+  <h2 class="h4-responsive wow fadeInDown text-center">
+    <Strong>Service providers within {{ rangeValue }} km (Drag the button to change the distance)</Strong>
+  </h2>
   <!-- Range -->
-  <div class="row">
-    <div class="col-md-12 mb-r">
-      <form class="range-field">
-        <input type="range" min="0" max="50" step="1" [(ngModel)]="rangeValue" name="range" (change)="rangeChange()" />
-      </form>
-    </div>
-  </div>
+  <!-- <div class="row"> -->
+  <!-- <div class="col-md-12 mb-r"> -->
+  <form class="range-field">
+    <input type="range" min="0" max="50" step="1" [(ngModel)]="rangeValue" name="range" (change)="rangeChange()">
+  </form>
+  <!-- </div> -->
+  <!-- </div> -->
   <!-- End Range -->
 
   <!-- Service Info Panel -->
@@ -669,17 +692,20 @@
 <div class="container" id="service-map" *ngIf="areAllServicesSelected && isWifiServiceMapVisiable">
 
   <div class="divider-new">
-    <h2 class="h2-responsive wow fadeInDown">Service providers within {{ rangeValue }} km</h2>
+    <h2 class="h2-responsive wow fadeInDown">Service Map</h2>
   </div>
 
+  <h2 class="h4-responsive wow fadeInDown text-center">
+    <Strong>Service providers within {{ rangeValue }} km (Drag the button to change the distance)</Strong>
+  </h2>
   <!-- Range -->
-  <div class="row">
-    <div class="col-md-12 mb-r">
-      <form class="range-field">
-        <input type="range" min="0" max="50" step="1" [(ngModel)]="rangeValue" name="range" (change)="rangeChange()" />
-      </form>
-    </div>
-  </div>
+  <!-- <div class="row"> -->
+  <!-- <div class="col-md-12 mb-r"> -->
+  <form class="range-field">
+    <input type="range" min="0" max="50" step="1" [(ngModel)]="rangeValue" name="range" (change)="rangeChange()">
+  </form>
+  <!-- </div> -->
+  <!-- </div> -->
   <!-- End Range -->
 
   <!-- Service Info Panel -->
@@ -813,3 +839,5 @@
   <!-- End Map -->
 </div>
 <!-- End All Events Map -->
+
+

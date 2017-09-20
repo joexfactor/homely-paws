@@ -21,6 +21,7 @@ import { TeamComponent } from './components/main-container/team/team.component';
 import { ContactComponent } from './components/main-container/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MapComponent } from './components/mask/map/map.component';
+import { EventComponent } from './components/main-container/event/event.component';
 
 const appRoutes: Routes = [
   { path: '', component: AppComponent },
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
   { path: 'mask', component: MaskComponent },
   { path: 'main-container', component: MainContainerComponent },
   { path: 'map', component: MapComponent },
+  { path: 'event', component: EventComponent },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'team', component: TeamComponent },
   { path: 'contact', component: ContactComponent },
@@ -44,7 +46,8 @@ const appRoutes: Routes = [
     TeamComponent,
     ContactComponent,
     FooterComponent,
-    MapComponent
+    MapComponent,
+    EventComponent
   ],
   imports: [
     BrowserModule,
