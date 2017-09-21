@@ -16,7 +16,6 @@ router.get('/healthcares/:currentLatitude/:currentLongitude', (req, res) => {
     Healthcare.find((err, healthcares) => {
         if (err) {
             console.log(err);
-            return res.send();
         } else {
             healthcares.forEach((eachHealthcare) => {
                 // Get eachDistance between each healthcare location and current location
@@ -45,7 +44,6 @@ router.get('/healthcare/:currentLatitude/:currentLongitude', (req, res) => {
     Healthcare.find((err, healthcares) => {
         if (err) {
             console.log(err);
-            return res.send();
         } else {
             let distanceArray = [];
             let healthcareAndDistanceMapArray = [];
@@ -83,6 +81,38 @@ router.get('/healthcare/:currentLatitude/:currentLongitude', (req, res) => {
         }
     });
 });
+
+/* GET Healthcares By Category*/
+router.get('/healthcaresByCategory/:currentLatitude/:currentLongitude/:category', (req, res) => {
+    // Get current location from Get method parameters
+    let currentLocation = {
+        "currentLatitude": req.params.currentLatitude,
+        "currentLongitude": req.params.currentLongitude
+    };
+    let healthcareAndDistanceMapArray = [];
+    Healthcare.find({
+        'category': req.params.category
+    }, (err, healthcares) => {
+        if (err) {
+            console.log(err);
+        } else {
+            healthcares.forEach((eachHealthcare) => {
+                // Get eachDistance between each healthcare location and current location
+                let eachLatitude = eachHealthcare.latitude;
+                let eachLongitude = eachHealthcare.longitude;
+                let eachDistance = Number(getDistance(eachLatitude, eachLongitude,
+                    currentLocation.currentLatitude, currentLocation.currentLongitude)).toFixed(2);
+                let eachHealthcareAndDistanceMap = {
+                    result: eachHealthcare,
+                    distance: Number(eachDistance)
+                };
+                healthcareAndDistanceMapArray.push(eachHealthcareAndDistanceMap);
+            });
+            res.json(healthcareAndDistanceMapArray);
+        }
+    });
+});
+
 
 /**
  * Transfer from angle to radian

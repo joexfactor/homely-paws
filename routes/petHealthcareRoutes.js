@@ -16,7 +16,6 @@ router.get('/petHealthcares/:currentLatitude/:currentLongitude', (req, res) => {
     PetHealthcare.find((err, petHealthcares) => {
         if (err) {
             console.log(err);
-            return res.send();
         } else {
             petHealthcares.forEach((eachPetHealthcare) => {
                 // Get eachDistance between each petHealthcare location and current location
@@ -45,7 +44,6 @@ router.get('/petHealthcare/:currentLatitude/:currentLongitude', (req, res) => {
     PetHealthcare.find((err, petHealthcares) => {
         if (err) {
             console.log(err);
-            return res.send();
         } else {
             let distanceArray = [];
             let petHealthcareAndDistanceMapArray = [];

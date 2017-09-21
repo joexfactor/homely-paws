@@ -63,6 +63,9 @@ export class MaskComponent implements OnInit {
   cachedAllServices: any[];
   rangeValue: number;
 
+  // Category Filter
+  categoryValue: string;
+
   constructor(public foodService: FoodService,
     public accommodationService: AccommodationService,
     public healthcareService: HealthcareService,
@@ -486,6 +489,27 @@ export class MaskComponent implements OnInit {
       + this.selectedService.result.name + ' ' + this.selectedService.result.address;
     console.log('googleMapDirectionUrl: ' + this.googleMapDirectionUrl);
     window.location.href = '#placeholder';
+  }
+
+  categoryChange(categoryValue) {
+    this.categoryValue = categoryValue;
+    console.log('categoryValue: ' + this.categoryValue);
+    setTimeout(() => {
+      this.healthcareService.getHealthcaresByCategory(this.categoryValue)
+        .subscribe(healthcares => {
+          this.allServices = healthcares;
+          this.cachedAllServices = healthcares;
+          this.isHealthcareServiceMapVisiable = true;
+          this.isFoodServiceMapVisiable = false;
+          this.isAccommodationServiceMapVisiable = false;
+          this.isEmergencyPetBoardingServiceMapVisiable = false;
+          this.isPetHealthcareServiceMapVisiable = false;
+          this.isWifiServiceMapVisiable = false;
+          this.isEventMapVisiable = false;
+          this.rangeChange();
+          window.location.href = '#placeholder';
+        });
+    }, 0);
   }
 
 }

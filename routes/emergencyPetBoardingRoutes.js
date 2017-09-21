@@ -16,7 +16,6 @@ router.get('/emergencyPetBoardings/:currentLatitude/:currentLongitude', (req, re
     EmergencyPetBoarding.find((err, emergencyPetBoardings) => {
         if (err) {
             console.log(err);
-            return res.send();
         } else {
             emergencyPetBoardings.forEach((eachEmergencyPetBoarding) => {
                 // Get eachDistance between each emergencyPetBoarding location and current location
@@ -45,7 +44,6 @@ router.get('/emergencyPetBoarding/:currentLatitude/:currentLongitude', (req, res
     EmergencyPetBoarding.find((err, emergencyPetBoardings) => {
         if (err) {
             console.log(err);
-            return res.send();
         } else {
             let distanceArray = [];
             let emergencyPetBoardingAndDistanceMapArray = [];

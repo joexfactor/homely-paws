@@ -24,6 +24,14 @@ export class HealthcareService {
       .map(res => res.json());
   }
 
+  getHealthcaresByCategory(category) {
+    // const url = 'http://localhost:8080/healthcaresByCategory/' + this.latitude + '/' + this.longitude + '/' + category;
+    const url = 'healthcaresByCategory/' + this.latitude + '/' + this.longitude + '/' + category;
+    console.log('healthcaresByCategory url: ' + url);
+    return this.http.get(url)
+      .map(res => res.json());
+  }
+
   getNearestHealthcare() {
     // const url = 'http://localhost:8080/healthcare/' + this.latitude + '/' + this.longitude;
     const url = 'healthcare/' + this.latitude + '/' + this.longitude;

@@ -194,7 +194,7 @@
   <!-- <div class="row"> -->
   <!-- <div class="col-md-12 mb-r"> -->
   <form class="range-field">
-    <input type="range" min="0" max="50" step="1" [(ngModel)]="rangeValue" name="range" (change)="rangeChange()">
+    <input type="range" min="0" max="50" step="5" [(ngModel)]="rangeValue" name="range" (change)="rangeChange()">
   </form>
   <!-- </div> -->
   <!-- </div> -->
@@ -496,6 +496,7 @@
   <h2 class="h4-responsive wow fadeInDown text-center">
     <Strong>Service providers within {{ rangeValue }} km (Drag the button to change the distance)</Strong>
   </h2>
+
   <!-- Range -->
   <!-- <div class="row"> -->
   <!-- <div class="col-md-12 mb-r"> -->
@@ -505,6 +506,24 @@
   <!-- </div> -->
   <!-- </div> -->
   <!-- End Range -->
+
+  <form>
+    <!--Dropdown primary-->
+    <div class="dropdown">
+
+      <!--Trigger-->
+      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">Category</button>
+      <!--Menu-->
+      <div class="dropdown-menu dropdown-primary">
+        <a class="dropdown-item" (click)="categoryChange('Emergency Care')">Emergency Care</a>
+        <a class="dropdown-item" (click)="categoryChange('Mental Health')">Mental Health</a>
+        <a class="dropdown-item" (click)="categoryChange('Dental Care')">Dental Care</a>
+        <a class="dropdown-item" (click)="categoryChange('Eye Care')">Eye Care</a>
+      </div>
+    </div>
+    <!--/Dropdown primary-->
+  </form>
 
   <!-- Service Info Panel -->
   <div class="list-group card z-depth-2" *ngIf="isMarkerClicked">
@@ -839,5 +858,3 @@
   <!-- End Map -->
 </div>
 <!-- End All Events Map -->
-
-
