@@ -82,6 +82,7 @@ export class MaskComponent implements OnInit {
     this.getCurrentLocation();
     this.isInitialMapEnabled = true;
     this.rangeValue = 5;
+    this.categoryValue = 'Category';
   }
 
   getCurrentLocation() {
@@ -468,15 +469,15 @@ export class MaskComponent implements OnInit {
   }
 
   rangeChange() {
-    console.log('rangeValue: ' + this.rangeValue);
-    console.log('services: ', this.cachedAllServices);
+    // console.log('rangeValue: ' + this.rangeValue);
+    // console.log('services: ', this.cachedAllServices);
     const filterServices: any[] = [];
     for (const eachService of this.cachedAllServices) {
       if (eachService.distance <= this.rangeValue) {
         filterServices.push(eachService);
       }
     }
-    console.log('filterServices: ', filterServices);
+    // console.log('filterServices: ', filterServices);
     this.allServices = filterServices;
   }
 
@@ -493,7 +494,7 @@ export class MaskComponent implements OnInit {
 
   categoryChange(categoryValue) {
     this.categoryValue = categoryValue;
-    console.log('categoryValue: ' + this.categoryValue);
+    // console.log('categoryValue: ' + this.categoryValue);
     setTimeout(() => {
       this.healthcareService.getHealthcaresByCategory(this.categoryValue)
         .subscribe(healthcares => {
