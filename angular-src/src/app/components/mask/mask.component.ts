@@ -331,6 +331,7 @@ export class MaskComponent implements OnInit {
             this.isPetHealthcareServiceMapVisiable = false;
             this.isWifiServiceMapVisiable = false;
             this.isEventMapVisiable = false;
+            this.categoryValue = 'Category';
             this.rangeChange();
             window.location.href = '#placeholder';
           });
@@ -493,24 +494,45 @@ export class MaskComponent implements OnInit {
   }
 
   categoryChange(categoryValue) {
-    this.categoryValue = categoryValue;
-    // console.log('categoryValue: ' + this.categoryValue);
-    setTimeout(() => {
-      this.healthcareService.getHealthcaresByCategory(this.categoryValue)
-        .subscribe(healthcares => {
-          this.allServices = healthcares;
-          this.cachedAllServices = healthcares;
-          this.isHealthcareServiceMapVisiable = true;
-          this.isFoodServiceMapVisiable = false;
-          this.isAccommodationServiceMapVisiable = false;
-          this.isEmergencyPetBoardingServiceMapVisiable = false;
-          this.isPetHealthcareServiceMapVisiable = false;
-          this.isWifiServiceMapVisiable = false;
-          this.isEventMapVisiable = false;
-          this.rangeChange();
-          window.location.href = '#placeholder';
-        });
-    }, 0);
+
+    if (categoryValue === 'All') {
+      setTimeout(() => {
+        this.healthcareService.getHealthcares()
+          .subscribe(healthcares => {
+            this.allServices = healthcares;
+            this.cachedAllServices = healthcares;
+            this.isHealthcareServiceMapVisiable = true;
+            this.isFoodServiceMapVisiable = false;
+            this.isAccommodationServiceMapVisiable = false;
+            this.isEmergencyPetBoardingServiceMapVisiable = false;
+            this.isPetHealthcareServiceMapVisiable = false;
+            this.isWifiServiceMapVisiable = false;
+            this.isEventMapVisiable = false;
+            this.categoryValue = 'Category';
+            this.rangeChange();
+            window.location.href = '#placeholder';
+          });
+      }, 0);
+    } else {
+      this.categoryValue = categoryValue;
+      // console.log('categoryValue: ' + this.categoryValue);
+      setTimeout(() => {
+        this.healthcareService.getHealthcaresByCategory(this.categoryValue)
+          .subscribe(healthcares => {
+            this.allServices = healthcares;
+            this.cachedAllServices = healthcares;
+            this.isHealthcareServiceMapVisiable = true;
+            this.isFoodServiceMapVisiable = false;
+            this.isAccommodationServiceMapVisiable = false;
+            this.isEmergencyPetBoardingServiceMapVisiable = false;
+            this.isPetHealthcareServiceMapVisiable = false;
+            this.isWifiServiceMapVisiable = false;
+            this.isEventMapVisiable = false;
+            this.rangeChange();
+            window.location.href = '#placeholder';
+          });
+      }, 0);
+    }
   }
 
 }

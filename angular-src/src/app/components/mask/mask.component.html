@@ -516,6 +516,7 @@
         aria-expanded="false">{{ categoryValue }}</button>
       <!--Menu-->
       <div class="dropdown-menu dropdown-primary">
+        <a class="dropdown-item" (click)="categoryChange('All')">All</a>
         <a class="dropdown-item" (click)="categoryChange('Emergency Care')">Emergency Care</a>
         <a class="dropdown-item" (click)="categoryChange('Mental Health')">Mental Health</a>
         <a class="dropdown-item" (click)="categoryChange('Dental Care')">Dental Care</a>
