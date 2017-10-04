@@ -2,111 +2,100 @@
 <div class="view hm-black-strong">
   <div class="full-bg-img flex-center">
     <div class="container">
-      <div class="row" id="home">
+      <div class="row mb-5" id="home">
 
         <!--First column-->
-        <div class="col-sm-12 col-md-12 col-lg-4">
+        <div class="col-lg-6">
           <div class="description">
-            <h3 class="h3-responsive wow fadeInLeft">Assisting You and Your Pet</h3>
+            <h3 class="h1-responsive wow fadeInLeft">Assisting You and Your Pet</h3>
             <hr class="hr-dark">
-            <p class="wow fadeInLeft col-sm-12" data-wow-delay="0.4s"></p>
-            <br>
-            <a class="btn btn-ptc wow fadeInLeft" href="#about-us" data-wow-delay="0.7s">Learn more</a>
           </div>
         </div>
         <!--/.First column-->
 
         <!--Second column-->
-        <div class="col-sm-12 col-md-12 col-lg-8">
+        <div class="col-lg-6">
 
-          <!--Form-->
-          <div class="card wow fadeInRight row container">
-            <div class="card-block">
-              <!--Header-->
-              <div class="text-center">
-                <h3><i class="fa"></i>How can we help?</h3>
-                <hr>
+          <!--Card-->
+          <div class="card wow fadeInRight">
+            <div class="card-body">
+
+              <div class="mt-1">
+                <!--Header-->
+                <div class="text-center">
+                  <h3><strong>How Can We Help?</strong></h3>
+                  <hr>
+                </div>
               </div>
 
-              <ul class="nav md-pills nav-justified pills-secondary">
-                <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" role="tab" (click)="clickFood($event)">I'm hungry</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" data-toggle="tab" role="tab" (click)="clickAccommodation($event)">I want shelter</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" role="tab" (click)="clickHealthcare($event)">I want medical help</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" role="tab" (click)="clickOtherServices($event)">Other services</a>
-                </li>
-              </ul>
+              <div class="dropdown mb-1 ml-2 mr-4">
+                <!--Trigger-->
+                <button class="btn btn-primary btn-block dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">{{ dropdownItem }}</button>
 
-              <!--Body-->
+                <!--Menu-->
+                <div class="dropdown-menu ml-2">
+                  <a class="dropdown-item" (click)="clickFood($event)">I'm Hungry</a>
+                  <a class="dropdown-item" (click)="clickAccommodation($event)">I Want Shelter</a>
+                  <a class="dropdown-item" (click)="clickHealthcare($event)">I Want Medical Help</a>
+                  <a class="dropdown-item" (click)="clickOtherServices($event)">I Want Other Services</a>
+                </div>
+              </div>
+
+              <!--Form-->
               <form class="form-inline">
-                <!-- Accommodation Radio Button -->
-                <div class="row wow fadeInRight container" *ngIf="isAccommodationSelected">
 
-                  <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+                <!-- Accommodation Radio Button -->
+                <div class="row wow fadeInRight col-12 pl-4" *ngIf="isAccommodationSelected">
+
+                  <div class="form-group col-12">
                     <input name="accommodationGroup" type="radio" id="accommodationRadio" checked="checked" (change)="tickAccommodationRadioButton($event)">
-                    <label for="accommodationRadio">For my pet and I</label>
+                    <label for="accommodationRadio">For My Pet and I</label>
                   </div>
 
-                  <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+                  <div class="form-group col-12">
                     <input name="accommodationGroup" type="radio" id="emergencyPetBoardingRadio" (change)="tickEmergencyPetBoardingRadioButton($event)">
-                    <label for="emergencyPetBoardingRadio">For my pet only</label>
+                    <label for="emergencyPetBoardingRadio">For My Pet Only</label>
                   </div>
 
                 </div>
 
                 <!-- Healthcare Radio Button -->
-                <div class="row wow fadeInRight container" *ngIf="isHealthcareSelected">
+                <div class="row wow fadeInRight col-12 pl-4" *ngIf="isHealthcareSelected">
 
-                  <div class="col-lg-6 col-md-6 form-group">
+                  <div class="col-12 form-group">
                     <input name="healthcareGroup" type="radio" id="healthcareRadio" checked="checked" (change)="tickHealcareRadioButton($event)">
-                    <label for="healthcareRadio">For me</label>
+                    <label for="healthcareRadio">For Me</label>
                   </div>
 
-                  <div class="col-lg-6 col-md-6 form-group">
+                  <div class="col-12 form-group">
                     <input name="healthcareGroup" type="radio" id="petHealthcareRadio" (change)="tickPetHealthcareRadioButton($event)">
-                    <label for="petHealthcareRadio">For my pet</label>
+                    <label for="petHealthcareRadio">For My Pet</label>
                   </div>
 
                 </div>
 
                 <!-- Health Radio Button -->
-                <div class="row wow fadeInRight container" *ngIf="isOtherServicesSelected">
+                <div class="row wow fadeInRight col-12 pl-4" *ngIf="isOtherServicesSelected">
 
-                  <div class="col-lg-6 col-md-6 form-group">
+                  <div class="col-12 form-group">
                     <input name="otherServicesGroup" type="radio" id="wifiRadio" checked="checked" (change)="tickWifiRadioButton($event)">
-                    <label for="wifiRadio">WIFI</label>
+                    <label for="wifiRadio">WI-FI</label>
                   </div>
-
-                  <!-- <div class="col-lg-6 col-md-6 form-group">
-                    <input name="otherServicesGroup" type="radio" id="eventsRadio" (change)="tickEventsRadioButton($event)">
-                    <label for="eventsRadio">Events</label>
-                  </div> -->
 
                 </div>
 
-                <!-- Select Button -->
-                <div class="col-md-12 wow fadeInRight">
-                  <div class="text-center">
-                    <br>
-                    <button type="button" class="btn btn-mdb" (click)="searchNearestService($event)">&nbsp;&nbsp;Closest service provider&nbsp;&nbsp;</button>
-                    <a>
-                      <button type="button" class="btn btn-mdb" (click)="searchAllServices($event)">Show all service providers</button>
-                    </a>
-                  </div>
-                </div>
+                <button type="button" class="btn btn-block btn-mdb mt-1 ml-4 mr-4" (click)="searchNearestService($event)">Show closest service provider</button>
+
+                <button type="button" class="btn btn-block btn-mdb mb-1 ml-4 mr-4" (click)="searchAllServices($event)">Show all service providers</button>
+
               </form>
-              <br>
+              <!--/.Form-->
             </div>
           </div>
-          <!--/.Form-->
+          <!--/.Card-->
         </div>
-        <!--/Second column-->
+        <!--/.Second column-->
       </div>
     </div>
   </div>
@@ -151,9 +140,9 @@
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1 h3-responsive"><strong>{{ selectedService.result.name }}</strong></h5>
       </div>
-      <p class="mb-1">{{ selectedService.result.address }}</p>
-      <small>{{ selectedService.result.operatingHours }}</small>
-      <br>
+      <div>{{ selectedService.result.address }}</div>
+      <div><small>{{ selectedService.result.operatingHours }}</small></div>
+      <div class="mb-1"><small>{{ selectedService.result.phone }}</small></div>
       <a [href]="googleMapDirectionUrl" class="white-text" target="_blank">
         <h6 class="h5-responsive wow fadeInLeft"><strong>Take Me There ( {{ selectedService.distance }} km )</strong></h6>
       </a>
@@ -206,9 +195,9 @@
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1 h3-responsive"><strong>{{ selectedService.result.name }}</strong></h5>
       </div>
-      <p class="mb-1">{{ selectedService.result.address }}</p>
-      <small>{{ selectedService.result.operatingHours }}</small>
-      <br>
+      <div>{{ selectedService.result.address }}</div>
+      <div><small>{{ selectedService.result.operatingHours }}</small></div>
+      <div class="mb-1"><small>{{ selectedService.result.phone }}</small></div>
       <a [href]="googleMapDirectionUrl" class="white-text" target="_blank">
         <h6 class="h5-responsive wow fadeInLeft"><strong>Take Me There ( {{ selectedService.distance }} km )</strong></h6>
       </a>
@@ -254,9 +243,9 @@
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1 h3-responsive"><strong>{{ selectedService.result.name }}</strong></h5>
       </div>
-      <p class="mb-1">{{ selectedService.result.address }}</p>
-      <small>{{ selectedService.result.operatingHours }}</small>
-      <br>
+      <div>{{ selectedService.result.address }}</div>
+      <div><small>{{ selectedService.result.operatingHours }}</small></div>
+      <div class="mb-1"><small>{{ selectedService.result.phone }}</small></div>
       <a [href]="googleMapDirectionUrl" class="white-text" target="_blank">
         <h6 class="h5-responsive wow fadeInLeft"><strong>Take Me There ( {{ selectedService.distance }} km )</strong></h6>
       </a>
@@ -309,9 +298,9 @@
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1 h3-responsive"><strong>{{ selectedService.result.name }}</strong></h5>
       </div>
-      <p class="mb-1">{{ selectedService.result.address }}</p>
-      <small>{{ selectedService.result.operatingHours }}</small>
-      <br>
+      <div>{{ selectedService.result.address }}</div>
+      <div><small>{{ selectedService.result.operatingHours }}</small></div>
+      <div class="mb-1"><small>{{ selectedService.result.phone }}</small></div>
       <a [href]="googleMapDirectionUrl" class="white-text" target="_blank">
         <h6 class="h5-responsive wow fadeInLeft"><strong>Take Me There ( {{ selectedService.distance }} km )</strong></h6>
       </a>
@@ -355,9 +344,9 @@
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1 h3-responsive"><strong>{{ selectedService.result.name }}</strong></h5>
       </div>
-      <p class="mb-1">{{ selectedService.result.address }}</p>
-      <small>{{ selectedService.result.operatingHours }}</small>
-      <br>
+      <div>{{ selectedService.result.address }}</div>
+      <div><small>{{ selectedService.result.operatingHours }}</small></div>
+      <div class="mb-1"><small>{{ selectedService.result.phone }}</small></div>
       <a [href]="googleMapDirectionUrl" class="white-text" target="_blank">
         <h6 class="h5-responsive wow fadeInLeft"><strong>Take Me There ( {{ selectedService.distance }} km )</strong></h6>
       </a>
@@ -410,9 +399,9 @@
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1 h3-responsive"><strong>{{ selectedService.result.name }}</strong></h5>
       </div>
-      <p class="mb-1">{{ selectedService.result.address }}</p>
-      <small>{{ selectedService.result.operatingHours }}</small>
-      <br>
+      <div>{{ selectedService.result.address }}</div>
+      <div><small>{{ selectedService.result.operatingHours }}</small></div>
+      <div class="mb-1"><small>{{ selectedService.result.phone }}</small></div>
       <a [href]="googleMapDirectionUrl" class="white-text" target="_blank">
         <h6 class="h5-responsive wow fadeInLeft"><strong>Take Me There ( {{ selectedService.distance }} km )</strong></h6>
       </a>
@@ -457,9 +446,9 @@
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1 h3-responsive"><strong>{{ selectedService.result.name }}</strong></h5>
       </div>
-      <p class="mb-1">{{ selectedService.result.address }}</p>
-      <small>{{ selectedService.result.operatingHours }}</small>
-      <br>
+      <div>{{ selectedService.result.address }}</div>
+      <div><small>{{ selectedService.result.operatingHours }}</small></div>
+      <div class="mb-1"><small>{{ selectedService.result.phone }}</small></div>
       <a [href]="googleMapDirectionUrl" class="white-text" target="_blank">
         <h6 class="h5-responsive wow fadeInLeft"><strong>Take Me There ( {{ selectedService.distance }} km )</strong></h6>
       </a>
@@ -525,16 +514,16 @@
     </div>
     <!--/Dropdown primary-->
   </form>
-
+  <br>
   <!-- Service Info Panel -->
   <div class="list-group card z-depth-2" *ngIf="isMarkerClicked">
     <a href="javascript:void(0)" class="wow fadeInLeft list-group-item list-group-item-action flex-column align-items-start active">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1 h3-responsive"><strong>{{ selectedService.result.name }}</strong></h5>
       </div>
-      <p class="mb-1">{{ selectedService.result.address }}</p>
-      <small>{{ selectedService.result.operatingHours }}</small>
-      <br>
+      <div>{{ selectedService.result.address }}</div>
+      <div><small>{{ selectedService.result.operatingHours }}</small></div>
+      <div class="mb-1"><small>{{ selectedService.result.phone }}</small></div>
       <a [href]="googleMapDirectionUrl" class="white-text" target="_blank">
         <h6 class="h5-responsive wow fadeInLeft"><strong>Take Me There ( {{ selectedService.distance }} km )</strong></h6>
       </a>
@@ -579,9 +568,9 @@
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1 h3-responsive"><strong>{{ selectedService.result.name }}</strong></h5>
       </div>
-      <p class="mb-1">{{ selectedService.result.address }}</p>
-      <small>{{ selectedService.result.operatingHours }}</small>
-      <br>
+      <div>{{ selectedService.result.address }}</div>
+      <div><small>{{ selectedService.result.operatingHours }}</small></div>
+      <div class="mb-1"><small>{{ selectedService.result.phone }}</small></div>
       <a [href]="googleMapDirectionUrl" class="white-text" target="_blank">
         <h6 class="h5-responsive wow fadeInLeft"><strong>Take Me There ( {{ selectedService.distance }} km )</strong></h6>
       </a>
@@ -634,9 +623,9 @@
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1 h3-responsive"><strong>{{ selectedService.result.name }}</strong></h5>
       </div>
-      <p class="mb-1">{{ selectedService.result.address }}</p>
-      <small>{{ selectedService.result.operatingHours }}</small>
-      <br>
+      <div>{{ selectedService.result.address }}</div>
+      <div><small>{{ selectedService.result.operatingHours }}</small></div>
+      <div class="mb-1"><small>{{ selectedService.result.phone }}</small></div>
       <a [href]="googleMapDirectionUrl" class="white-text" target="_blank">
         <h6 class="h5-responsive wow fadeInLeft"><strong>Take Me There ( {{ selectedService.distance }} km )</strong></h6>
       </a>
@@ -764,98 +753,3 @@
   <!-- End Map -->
 </div>
 <!-- End All Wifi Hotspot Services Map -->
-
-
-
-<!-- Nearest Event Map -->
-<div class="container" id="service-map" *ngIf="isNearestServiceSelected && isEventMapVisiable">
-  <div class="divider-new">
-    <h2 class="h2-responsive wow fadeInDown">Event Information</h2>
-  </div>
-
-  <!-- Service Info Panel -->
-  <div class="list-group card z-depth-2" *ngIf="isMarkerClicked">
-    <a href="javascript:void(0)" class="wow fadeInLeft list-group-item list-group-item-action flex-column align-items-start active">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1 h3-responsive"><strong>{{ selectedService.result.name }}</strong></h5>
-      </div>
-      <p class="mb-1">{{ selectedService.result.address }}</p>
-      <a [href]="googleMapDirectionUrl" class="white-text" target="_blank">
-        <h6 class="h5-responsive wow fadeInLeft"><strong>Take Me There ( {{ selectedService.distance }} km )</strong></h6>
-      </a>
-    </a>
-  </div>
-  <!-- End Service Info Panel -->
-  <br>
-  <!-- Map -->
-  <section>
-    <div id="map" class="z-depth-2 wow fadeInUp">
-      <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-        <agm-marker [latitude]="latitude" [longitude]="longitude" (markerClick)="clickedMarker()" [iconUrl]="'assets/img/marker/placeholder.png'">
-          <agm-info-window><strong>Your Current Position</strong></agm-info-window>
-        </agm-marker>
-        <agm-marker [latitude]="nearestService.result.latitude" [longitude]="nearestService.result.longitude" (markerClick)="clickedMarker(nearestService)">
-          <!-- <agm-info-window>
-                    <strong>{{ nearestService.name }}</strong><br> {{ nearestService.address }}<br> {{ nearestService.phone }}
-                  </agm-info-window> -->
-        </agm-marker>
-      </agm-map>
-    </div>
-  </section>
-  <!-- End Map -->
-</div>
-<!-- End Nearest Event Map -->
-
-<!-- All Events Map -->
-<div class="container" id="service-map" *ngIf="areAllServicesSelected && isEventMapVisiable">
-
-  <div class="divider-new">
-    <h2 class="h2-responsive wow fadeInDown">Events within {{ rangeValue }} km</h2>
-  </div>
-
-  <!-- Range -->
-  <div class="row">
-    <div class="col-md-12 mb-r">
-      <form class="range-field">
-        <input type="range" min="0" max="50" step="1" [(ngModel)]="rangeValue" name="range" (change)="rangeChange()" />
-      </form>
-    </div>
-  </div>
-  <!-- End Range -->
-
-  <!-- Service Info Panel -->
-  <div class="list-group card z-depth-2" *ngIf="isMarkerClicked">
-    <a href="javascript:void(0)" class="wow fadeInLeft list-group-item list-group-item-action flex-column align-items-start active">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1 h3-responsive"><strong>{{ selectedService.result.name }}</strong></h5>
-      </div>
-      <p class="mb-1">{{ selectedService.result.address }}</p>
-      <a [href]="googleMapDirectionUrl" class="white-text" target="_blank">
-        <h6 class="h5-responsive wow fadeInLeft"><strong>Take Me There ( {{ selectedService.distance }} km )</strong></h6>
-      </a>
-    </a>
-  </div>
-  <!-- End Service Info Panel -->
-  <br>
-  <!-- Map -->
-  <section>
-    <div id="map" class="z-depth-2 wow fadeInUp">
-      <agm-map #agm [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-        <agm-marker [latitude]="latitude" [longitude]="longitude" [iconUrl]="'assets/img/marker/placeholder.png'">
-          <agm-info-window><strong>Your Current Position</strong></agm-info-window>
-        </agm-marker>
-        <agm-marker-cluster imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
-          <!-- <agm-marker *ngFor="let service of allServices" [latitude]="service.latitude" [longitude]="service.longitude" (markerClick)="agm.lastOpen?.close(); agm.lastOpen = infoWindow; clickedMarker(service)"> -->
-          <agm-marker *ngFor="let service of allServices" [latitude]="service.result.latitude" [longitude]="service.result.longitude"
-            (markerClick)="clickedMarker(service)">
-            <!-- <agm-info-window #infoWindow>
-                            <strong>{{ service.name }}</strong><br> {{ service.address }}<br> {{ service.phone }}
-                          </agm-info-window> -->
-          </agm-marker>
-        </agm-marker-cluster>
-      </agm-map>
-    </div>
-  </section>
-  <!-- End Map -->
-</div>
-<!-- End All Events Map -->
