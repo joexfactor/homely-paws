@@ -45,6 +45,20 @@
   <!-- Animations init-->
   <script>
     new WOW().init();
+
+    $(document).on('click', function (event) {
+      var $clickedOn = $(event.target),
+        $collapsableItems = $('.collapse'),
+        isToggleButton = ($clickedOn.closest('.navbar-toggle').length == 1),
+        isLink = ($clickedOn.closest('a').length == 1),
+        isOutsideNavbar = ($clickedOn.parents('.navbar').length == 0);
+
+      if ((!isToggleButton && isLink) || isOutsideNavbar) {
+        $collapsableItems.each(function () {
+          $(this).collapse('hide');
+        });
+      }
+    });
   </script>
 
 <script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="styles.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script></body>
