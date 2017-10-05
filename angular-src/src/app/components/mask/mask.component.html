@@ -118,7 +118,7 @@
     <div id="map" class="z-depth-2 wow fadeInUp">
       <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
         <agm-marker [latitude]="latitude" [longitude]="longitude" [iconUrl]="'assets/img/marker/placeholder.png'">
-          <agm-info-window [isOpen]="isOpen"><strong>Your Current Position</strong></agm-info-window>
+          <agm-info-window [isOpen]="isOpen"><strong>Your Current Location</strong></agm-info-window>
         </agm-marker>
       </agm-map>
     </div>
@@ -155,7 +155,7 @@
     <div id="map" class="z-depth-2 wow fadeInUp">
       <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
         <agm-marker [latitude]="latitude" [longitude]="longitude" (markerClick)="clickedMarker()" [iconUrl]="'assets/img/marker/placeholder.png'">
-          <agm-info-window><strong>Your Current Position</strong></agm-info-window>
+          <agm-info-window><strong>Your Current Location</strong></agm-info-window>
         </agm-marker>
         <agm-marker [latitude]="nearestService.result.latitude" [longitude]="nearestService.result.longitude" (markerClick)="clickedMarker(nearestService)">
           <!-- <agm-info-window>
@@ -215,7 +215,7 @@
     <div id="map" class="z-depth-2 wow fadeInUp">
       <agm-map #agm [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
         <agm-marker [latitude]="latitude" [longitude]="longitude" [iconUrl]="'assets/img/marker/placeholder.png'">
-          <agm-info-window><strong>Your Current Position</strong></agm-info-window>
+          <agm-info-window><strong>Your Current Location</strong></agm-info-window>
         </agm-marker>
         <agm-marker-cluster imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
           <!-- <agm-marker *ngFor="let service of allServices" [latitude]="service.latitude" [longitude]="service.longitude" (markerClick)="agm.lastOpen?.close(); agm.lastOpen = infoWindow; clickedMarker(service)"> -->
@@ -263,7 +263,7 @@
     <div id="map" class="z-depth-2 wow fadeInUp">
       <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
         <agm-marker [latitude]="latitude" [longitude]="longitude" (markerClick)="clickedMarker()" [iconUrl]="'assets/img/marker/placeholder.png'">
-          <agm-info-window><strong>Your Current Position</strong></agm-info-window>
+          <agm-info-window><strong>Your Current Location</strong></agm-info-window>
         </agm-marker>
         <agm-marker [latitude]="nearestService.result.latitude" [longitude]="nearestService.result.longitude" (markerClick)="clickedMarker(nearestService)">
           <!-- <agm-info-window>
@@ -322,7 +322,7 @@
     <div id="map" class="z-depth-2 wow fadeInUp">
       <agm-map #agm [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
         <agm-marker [latitude]="latitude" [longitude]="longitude" [iconUrl]="'assets/img/marker/placeholder.png'">
-          <agm-info-window><strong>Your Current Position</strong></agm-info-window>
+          <agm-info-window><strong>Your Current Location</strong></agm-info-window>
         </agm-marker>
         <agm-marker-cluster imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
           <!-- <agm-marker *ngFor="let service of allServices" [latitude]="service.latitude" [longitude]="service.longitude" (markerClick)="agm.lastOpen?.close(); agm.lastOpen = infoWindow; clickedMarker(service)"> -->
@@ -368,7 +368,7 @@
     <div id="map" class="z-depth-2 wow fadeInUp">
       <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
         <agm-marker [latitude]="latitude" [longitude]="longitude" (markerClick)="clickedMarker()" [iconUrl]="'assets/img/marker/placeholder.png'">
-          <agm-info-window><strong>Your Current Position</strong></agm-info-window>
+          <agm-info-window><strong>Your Current Location</strong></agm-info-window>
         </agm-marker>
         <agm-marker [latitude]="nearestService.result.latitude" [longitude]="nearestService.result.longitude" (markerClick)="clickedMarker(nearestService)">
           <!-- <agm-info-window>
@@ -427,7 +427,7 @@
     <div id="map" class="z-depth-2 wow fadeInUp">
       <agm-map #agm [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
         <agm-marker [latitude]="latitude" [longitude]="longitude" [iconUrl]="'assets/img/marker/placeholder.png'">
-          <agm-info-window><strong>Your Current Position</strong></agm-info-window>
+          <agm-info-window><strong>Your Current Location</strong></agm-info-window>
         </agm-marker>
         <agm-marker-cluster imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
           <!-- <agm-marker *ngFor="let service of allServices" [latitude]="service.latitude" [longitude]="service.longitude" (markerClick)="agm.lastOpen?.close(); agm.lastOpen = infoWindow; clickedMarker(service)"> -->
@@ -474,7 +474,7 @@
     <div id="map" class="z-depth-2 wow fadeInUp">
       <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
         <agm-marker [latitude]="latitude" [longitude]="longitude" (markerClick)="clickedMarker()" [iconUrl]="'assets/img/marker/placeholder.png'">
-          <agm-info-window><strong>Your Current Position</strong></agm-info-window>
+          <agm-info-window><strong>Your Current Location</strong></agm-info-window>
         </agm-marker>
         <agm-marker [latitude]="nearestService.result.latitude" [longitude]="nearestService.result.longitude" (markerClick)="clickedMarker(nearestService)">
           <!-- <agm-info-window>
@@ -551,7 +551,7 @@
     <div id="map" class="z-depth-2 wow fadeInUp">
       <agm-map #agm [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
         <agm-marker [latitude]="latitude" [longitude]="longitude" [iconUrl]="'assets/img/marker/placeholder.png'">
-          <agm-info-window><strong>Your Current Position</strong></agm-info-window>
+          <agm-info-window><strong>Your Current Location</strong></agm-info-window>
         </agm-marker>
         <agm-marker-cluster imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
           <!-- <agm-marker *ngFor="let service of allServices" [latitude]="service.latitude" [longitude]="service.longitude" (markerClick)="agm.lastOpen?.close(); agm.lastOpen = infoWindow; clickedMarker(service)"> -->
@@ -598,7 +598,7 @@
     <div id="map" class="z-depth-2 wow fadeInUp">
       <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
         <agm-marker [latitude]="latitude" [longitude]="longitude" (markerClick)="clickedMarker()" [iconUrl]="'assets/img/marker/placeholder.png'">
-          <agm-info-window><strong>Your Current Position</strong></agm-info-window>
+          <agm-info-window><strong>Your Current Location</strong></agm-info-window>
         </agm-marker>
         <agm-marker [latitude]="nearestService.result.latitude" [longitude]="nearestService.result.longitude" (markerClick)="clickedMarker(nearestService)">
           <!-- <agm-info-window>
@@ -657,7 +657,7 @@
     <div id="map" class="z-depth-2 wow fadeInUp">
       <agm-map #agm [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
         <agm-marker [latitude]="latitude" [longitude]="longitude" [iconUrl]="'assets/img/marker/placeholder.png'">
-          <agm-info-window><strong>Your Current Position</strong></agm-info-window>
+          <agm-info-window><strong>Your Current Location</strong></agm-info-window>
         </agm-marker>
         <agm-marker-cluster imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
           <!-- <agm-marker *ngFor="let service of allServices" [latitude]="service.latitude" [longitude]="service.longitude" (markerClick)="agm.lastOpen?.close(); agm.lastOpen = infoWindow; clickedMarker(service)"> -->
@@ -702,7 +702,7 @@
     <div id="map" class="z-depth-2 wow fadeInUp">
       <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
         <agm-marker [latitude]="latitude" [longitude]="longitude" (markerClick)="clickedMarker()" [iconUrl]="'assets/img/marker/placeholder.png'">
-          <agm-info-window><strong>Your Current Position</strong></agm-info-window>
+          <agm-info-window><strong>Your Current Location</strong></agm-info-window>
         </agm-marker>
         <agm-marker [latitude]="nearestService.result.latitude" [longitude]="nearestService.result.longitude" (markerClick)="clickedMarker(nearestService)">
           <!-- <agm-info-window>
@@ -759,7 +759,7 @@
     <div id="map" class="z-depth-2 wow fadeInUp">
       <agm-map #agm [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
         <agm-marker [latitude]="latitude" [longitude]="longitude" [iconUrl]="'assets/img/marker/placeholder.png'">
-          <agm-info-window><strong>Your Current Position</strong></agm-info-window>
+          <agm-info-window><strong>Your Current Location</strong></agm-info-window>
         </agm-marker>
         <agm-marker-cluster imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
           <!-- <agm-marker *ngFor="let service of allServices" [latitude]="service.latitude" [longitude]="service.longitude" (markerClick)="agm.lastOpen?.close(); agm.lastOpen = infoWindow; clickedMarker(service)"> -->
