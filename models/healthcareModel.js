@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 const mongoose = require('mongoose');
 
-// Food Schema
+// Healthcare Schema
 const healthcareSchema = mongoose.Schema({
     name: {
         type: String,

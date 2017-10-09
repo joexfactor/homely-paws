@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 const mongoose = require('mongoose');
 
-// Food Schema
+// EmergencyPetBoarding Schema
 const emergencyPetBoardingSchema = mongoose.Schema({
     name: {
         type: String,

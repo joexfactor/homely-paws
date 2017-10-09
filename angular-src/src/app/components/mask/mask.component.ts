@@ -123,6 +123,7 @@ export class MaskComponent implements OnInit {
       this.foodService.getNearestFood()
         .subscribe(food => {
           this.nearestService = food;
+          console.log('nearestService: ', this.nearestService);
           this.isFoodServiceMapVisiable = true;
           this.isAccommodationServiceMapVisiable = false;
           this.isEmergencyPetBoardingServiceMapVisiable = false;
