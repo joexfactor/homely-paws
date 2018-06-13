@@ -55,13 +55,18 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyD0Aw_AuBepbQ1imricl1iVdkbu7tw8YWQ'
+      apiKey: 'AIzaSyDn8p8nZOB1IdBot_kRNsnpMc1-nJhs8Ak'
     }),
     ToastModule.forRoot(),
     BrowserAnimationsModule,
     AgmJsMarkerClustererModule
   ],
-  providers: [FoodService, AccommodationService, HealthcareService, OtherService],
+  providers: [
+    FoodService,
+    AccommodationService,
+    HealthcareService,
+    OtherService
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
